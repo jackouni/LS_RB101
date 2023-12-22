@@ -52,70 +52,77 @@ def calculator()
   Kernel.puts("Type in a calculation you want to make...")
   Kernel.puts("At any time if you need a cheat sheet, just type: \"help\" or \"h\"." )
 
-  num_1 = nil
-  operator = nil
-  num_2 = nil
+  loop do
+    num_1 = nil
+    operator = nil
+    num_2 = nil
 
-  # Get first number in expression
-  loop do  
-    Kernel.puts("Enter the first Integer number in your expression.")
-    first_num = Kernel.gets().chomp()
+    # Get first number in expression
+    loop do  
+      Kernel.puts("Enter the first Integer number in your expression.")
+      first_num = Kernel.gets().chomp()
 
-    if first_num == 'h' || first_num == 'help'
-      display_help()
-      next
+      if first_num == 'h' || first_num == 'help'
+        display_help()
+        next
+      end
+
+      if valid_num?(first_num)
+        num_1 = first_num.to_i
+        break
+      end
+
+      Kernel.puts("Please enter a valid whole number (no decimals)" )
     end
 
-    if valid_num?(first_num)
-      num_1 = first_num.to_i
-      break
+    # Get operator
+    loop do 
+      Kernel.puts( "Enter the operation you want to perform: \n
+            '*' ~ Mutliply \n 
+            '/' ~ Divide \n 
+            '+' ~ Add \n 
+            '-' ~ Subtract \n ")
+
+      user_operator = Kernel.gets().chomp()
+
+      if user_operator == 'h' || user_operator == 'help'
+        display_help()
+        next
+      end
+
+      if valid_operator?(user_operator)
+        operator = user_operator
+        break
+      end
+
+      Kernel.puts("Please enter a valid operator!" )
     end
 
-    Kernel.puts("Please enter a valid whole number (no decimals)" )
-  end
+    # Get second number in expression
+    loop do  
+      Kernel.puts("Enter the second Integer number in your expression.")
+      second_num = Kernel.gets().chomp()
 
-  # Get operator
-  loop do 
-    Kernel.puts( "Enter the operation you want to perform: \n
-          '*' ~ Mutliply \n 
-          '/' ~ Divide \n 
-          '+' ~ Add \n 
-          '-' ~ Subtract \n ")
+      if second_num.downcase == 'h' || second_num.downcase == 'help'
+        display_help()
+        next
+      end
 
-    user_operator = Kernel.gets().chomp()
+      if valid_num?(second_num)
+        num_2 = second_num.to_i()
+        break
+      end
 
-    if user_operator == 'h' || user_operator == 'help'
-      display_help()
-      next
+      Kernel.puts( "Please enter a valid whole number (no decimals)" )
     end
 
-    if valid_operator?(user_operator)
-      operator = user_operator
-      break
-    end
+    Kernel.puts("#{num_1} #{operator} #{num_2} is equal to #{calculate(num_1, operator, num_2)}")
 
-    Kernel.puts("Please enter a valid operator!" )
-  end
+    Kernel.puts("Want to perform another operation?\nType 'q' or 'quit' to exit program:")
+    user_continue = Kernel.gets().chomp()
 
-  # Get second number in expression
-  loop do  
-    Kernel.puts("Enter the second Integer number in your expression.")
-    second_num = Kernel.gets().chomp()
-
-    if second_num.downcase == 'h' || second_num.downcase == 'help'
-      display_help()
-      next
-    end
-
-    if valid_num?(second_num)
-      num_2 = second_num.to_i
-      break
-    end
-
-    Kernel.puts( "Please enter a valid whole number (no decimals)" )
-  end
-
-  Kernel.puts("#{num_1} #{operator} #{num_2} is equal to #{calculate(num_1, operator, num_2)}")
+    break if user_continue.downcase() == 'q' || user_continue.downcase() == 'quit'
+  end  
 end
 
 
