@@ -1,3 +1,6 @@
+## ASSIGNMENT: 
+# Walk-through: Calculator
+
 =begin 
   Build a command line calculator program that does the following:
 
@@ -10,6 +13,12 @@
   so you have to call chomp() to remove it: Kernel.gets().chomp() 
 =end
 
+# >---------------------------------------------------------------------------------------------------< #
+# <----------------------------------------------------------------------------------------------------> #
+
+## MY CALCULATOR ATTEMPT:
+# Decided to try and build the calculator myself before following the walkthrough.
+
 def valid_num?(num)
   true if num.to_i.to_s == num
 end 
@@ -20,11 +29,11 @@ def valid_operator?(operator)
 end
 
 def display_help 
-  puts "These operators are valid to enter:       
+  Kernel.puts("These operators are valid to enter:       
         '*' ~ Mutliply \n 
         '/' ~ Divide \n 
         '+' ~ Add \n 
-        '-' ~ Subtract \n "
+        '-' ~ Subtract \n ")
 end 
 
 def calculate(num_1, operator, num_2) 
@@ -38,8 +47,8 @@ def calculate(num_1, operator, num_2)
 end  
 
 def calculator() 
-  puts "Type in a calculation you want to make..."
-  puts "At any time if you need a cheat sheet, just type: \"help\" or \"h\"." 
+  Kernel.puts("Type in a calculation you want to make...")
+  Kernel.puts("At any time if you need a cheat sheet, just type: \"help\" or \"h\"." )
 
   num_1 = nil
   operator = nil
@@ -47,7 +56,7 @@ def calculator()
 
   # Get first number in expression
   loop do  
-    puts "Enter the first Integer number in your expression."
+    Kernel.puts("Enter the first Integer number in your expression.")
     first_num = Kernel.gets().chomp()
 
     if first_num == 'h' || first_num == 'help'
@@ -60,16 +69,16 @@ def calculator()
       break
     end
 
-    puts "Please enter a valid whole number (no decimals)" 
+    Kernel.puts("Please enter a valid whole number (no decimals)" )
   end
 
   # Get operator
   loop do 
-    puts "Enter the operation you want to perform: \n
+    Kernel.puts( "Enter the operation you want to perform: \n
           '*' ~ Mutliply \n 
           '/' ~ Divide \n 
           '+' ~ Add \n 
-          '-' ~ Subtract \n "
+          '-' ~ Subtract \n ")
 
     user_operator = Kernel.gets().chomp()
 
@@ -83,12 +92,12 @@ def calculator()
       break
     end
 
-    puts "Please enter a valid operator!" 
+    Kernel.puts("Please enter a valid operator!" )
   end
 
   # Get second number in expression
   loop do  
-    puts "Enter the second Integer number in your expression."
+    Kernel.puts("Enter the second Integer number in your expression.")
     second_num = Kernel.gets().chomp()
 
     if second_num == 'h' || second_num == 'help'
@@ -101,10 +110,76 @@ def calculator()
       break
     end
 
-    puts "Please enter a valid whole number (no decimals)" 
+    Kernel.puts( "Please enter a valid whole number (no decimals)" )
   end
 
-  puts "#{num_1} #{operator} #{num_2} is equal to #{calculate(num_1, operator, num_2)}"
+  Kernel.puts("#{num_1} #{operator} #{num_2} is equal to #{calculate(num_1, operator, num_2)}")
 end
 
-calculator()
+# calculator()
+
+# >---------------------------------------------------------------------------------------------------< #
+# <----------------------------------------------------------------------------------------------------> #
+
+## CALCULATOR WALK-THROUGH:
+# Following the walkthrough.
+
+# Ask user for two numbers
+# Ask user for operation to perform
+# Perform the operation on the two numbers
+# output the results
+
+
+Kernel.puts("Welcome to calculator")
+Kernel.puts("What's your first number?")
+first_number = Kernel.gets()
+
+# Note: 
+  # '#inspect' shows you escape and hidden characters, that 'puts' abstracts away.
+  puts("Inspecting 'gets': #{first_number.inspect()}") # A new-line character ( \n ) is added in our 'gets'.
+  # '#chomp' returns a string of self without new-line characters.
+  puts("With 'chomp': #{first_number.chomp()}") # The string is returned without the new line character.
+  puts("")
+
+  first_number = first_number.chomp() # Applying the 'CHOMP' to first_number
+#
+
+Kernel.puts("What's your second number?")
+second_number = Kernel.gets().chomp()
+
+Kernel.puts("What operation would you like to perform? 
+  1) add 2) subtract 3) multiply 4) divide")
+operator = Kernel.gets().chomp()
+
+if operator == '1'
+  results = first_number + second_number
+  Kernel.puts("'result' with String concat: #{results}")
+  # ⬆️ 'results outputs a string concatenation. 
+  
+  # ⬇️ We have to use 'to_i' to convert our string inputs into Integers, so ruby can perform arithmetic on them.
+  results = first_number.to_i + second_number.to_i
+  Kernel.puts("'result' with Integers: #{results}")
+
+elsif operator == '2'
+  results = first_number.to_i - second_number.to_i
+  Kernel.puts(results)
+
+elsif operator == '3'
+  results = first_number.to_i * second_number.to_i
+  Kernel.puts(results)
+
+elsif operator == '4'
+  results = first_number.to_i / second_number.to_i
+  Kernel.puts("'result' with Integers: #{results}")
+  # ⬆️ The results for division won't print out decimal vales.
+  # This is because Ruby is doing whole Integer divison.
+
+  # ⬇️ To display floats we need to apply the 'to_f' to our numbers.
+  results = first_number.to_f / second_number.to_f
+  Kernel.puts("'result' with Floats: #{results}")
+end 
+
+
+
+
+
