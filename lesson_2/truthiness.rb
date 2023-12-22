@@ -21,3 +21,6 @@ puts {:num => 12} == true
 # This is because, although Ruby considers any values other than nil and false
 # to be truthy, it does not evaluate truthy to be **true**. 
 # Only `true == true` will ever be truly **true** (haha).
+
+
+## Everything in Ruby except for nil and false are considered truthy ##
