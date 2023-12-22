@@ -30,10 +30,11 @@ end
 
 def display_help 
   Kernel.puts("These operators are valid to enter:       
-        '*' ~ Mutliply \n 
-        '/' ~ Divide \n 
-        '+' ~ Add \n 
-        '-' ~ Subtract \n ")
+    '*' ~ Mutliply \n 
+    '/' ~ Divide \n 
+    '+' ~ Add \n 
+    '-' ~ Subtract \n 
+    Ctl + C ~ exit program \n ")
 end 
 
 def calculate(num_1, operator, num_2) 
@@ -47,6 +48,7 @@ def calculate(num_1, operator, num_2)
 end  
 
 def calculator() 
+  Kernel.puts("WELCOME TO THE CALCULCATOR APP")
   Kernel.puts("Type in a calculation you want to make...")
   Kernel.puts("At any time if you need a cheat sheet, just type: \"help\" or \"h\"." )
 
@@ -100,7 +102,7 @@ def calculator()
     Kernel.puts("Enter the second Integer number in your expression.")
     second_num = Kernel.gets().chomp()
 
-    if second_num == 'h' || second_num == 'help'
+    if second_num.downcase == 'h' || second_num.downcase == 'help'
       display_help()
       next
     end
@@ -116,10 +118,10 @@ def calculator()
   Kernel.puts("#{num_1} #{operator} #{num_2} is equal to #{calculate(num_1, operator, num_2)}")
 end
 
-# calculator()
 
 # >---------------------------------------------------------------------------------------------------< #
-# <----------------------------------------------------------------------------------------------------> #
+# <---------------------------------------------------------------------------------------------------> #
+
 
 ## CALCULATOR WALK-THROUGH:
 # Following the walkthrough.
@@ -130,7 +132,7 @@ end
 # output the results
 
 
-Kernel.puts("Welcome to calculator")
+Kernel.puts("Welcome to the calculator app")
 Kernel.puts("What's your first number?")
 first_number = Kernel.gets()
 
@@ -178,6 +180,11 @@ elsif operator == '4'
   results = first_number.to_f / second_number.to_f
   Kernel.puts("'result' with Floats: #{results}")
 end 
+
+Kernel.puts("--------------------")
+Kernel.puts("--------------------")
+
+calculator()
 
 
 
