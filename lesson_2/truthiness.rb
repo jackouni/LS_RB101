@@ -23,4 +23,4 @@ puts {:num => 12} == true
 # Only `true == true` will ever be truly **true** (haha).
 
 
-## Everything in Ruby except for nil and false are considered truthy ##
+## Everything in Ruby except for nil and false are considered truthy #
