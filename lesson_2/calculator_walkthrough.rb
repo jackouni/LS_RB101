@@ -48,7 +48,7 @@ def calculate(num_1, operator, num_2)
 end  
 
 def calculator() 
-  Kernel.puts("WELCOME TO THE CALCULCATOR APP")
+  Kernel.puts("WELCOME TO THE CALCULCATOR APP - (( MY VERSION ))")
   Kernel.puts("Type in a calculation you want to make...")
   Kernel.puts("At any time if you need a cheat sheet, just type: \"help\" or \"h\"." )
 
@@ -125,6 +125,7 @@ def calculator()
   end  
 end
 
+calculator()
 
 # >---------------------------------------------------------------------------------------------------< #
 # <---------------------------------------------------------------------------------------------------> #
@@ -139,7 +140,7 @@ end
 # output the results
 
 
-Kernel.puts("Welcome to the calculator app")
+Kernel.puts("Welcome to the calculator app - (( LAUNCH SCHOOL ))")
 Kernel.puts("What's your first number?")
 first_number = Kernel.gets()
 
@@ -190,8 +191,6 @@ end
 
 Kernel.puts("--------------------")
 Kernel.puts("--------------------")
-
-calculator()
 
 
 
