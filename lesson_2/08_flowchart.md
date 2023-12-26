@@ -27,4 +27,4 @@ Here's some pseudo-code from the last assignment:
 
 Here's what the above code would look like as a flowchart:
 
-![Flowchart](lesson_2/images/flowchart-diagram.drawio.png)
+![Flowchart](lesson_2/images/flowchart-diagram.drawio.PNG)
