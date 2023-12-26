@@ -3,6 +3,8 @@
 We can use flowcharts to organize and illustrate the control flow of an application.
 The flowcharts are generally used to supplement pseudo-code and really helps with abstracting the process.
 
+Trying to create flowcharts and pseudo-code can get a little tough, deciding what parts we include and what complexities we want to abstract out can be hard. The idea is to give a higher level overview of the application flow, so we sometimes could just include methods or titles in our pseudo-code and flowchart that represent a whole other sub-process and on separate pseudo-code or flowcharts we can figure out those sub-processes. Deciding what sub-processes to have written out in full can be hard, and it's apart of the problem solving.
+
 ### Here are some common symbols we can use in our flowchart diagrams:
 
 <img src="lesson_2/images/flowchart_components.jpg">
@@ -32,5 +34,3 @@ The flowcharts are generally used to supplement pseudo-code and really helps wit
 ### Here's what the above code would look like as a flowchart:
 
 <img src="lesson_2/images/flowchart-diagram.drawio.png">
-
-Test commit
