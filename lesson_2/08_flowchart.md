@@ -3,6 +3,10 @@
 We can use flowcharts to organize and illustrate the control flow of an application.
 The flowcharts are generally used to supplement pseudo-code and really helps with abstracting the process.
 
+### Here are some common symbols we can use in our flowchart diagrams:
+
+<img src="lesson_2/images/flowchart_components.jpg">
+
 ### Here's some pseudo-code from the last assignment:
 
 ```ruby
@@ -25,4 +29,6 @@ The flowcharts are generally used to supplement pseudo-code and really helps wit
 =end
 ```
 
-HI
+### Here's what the above code would look like as a flowchart:
+
+<img src="lesson_2/images/flowchart-diagram.drawio.png">
