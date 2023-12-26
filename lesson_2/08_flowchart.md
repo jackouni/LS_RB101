@@ -27,4 +27,4 @@ Here's some pseudo-code from the last assignment:
 
 Here's what the above code would look like as a flowchart:
 
-<img src="lesson_2/images/flowchart-diagram.drawio.png)">
+<img src="LS_RB101/lesson_2/images/flowchart-diagram.drawio.png">
