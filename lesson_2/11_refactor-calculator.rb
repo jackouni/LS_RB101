@@ -1,6 +1,6 @@
 # REFACTORING THE CALCULATOR:
 
-## In this file I will be refactoring the calculator app I did back in assignment 6.
+## In this file I will be refactoring the calculator app I did.
 
 ## Things to think about (Before walkthrough):
 =begin 
