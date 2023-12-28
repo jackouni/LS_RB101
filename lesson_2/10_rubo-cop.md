@@ -29,11 +29,13 @@ Does perform some style checks like a style formatter, but is more focused on lo
 This can be software that detects un-assigned/empty variables, syntax errors, and typos and will give an error message
 for the specific things it finds.
 
-## How to install Rubocop?
+<hr>
+
+## How to install/set-up Rubocop?
 
 There are 2 methods to installing rubocop onto your machine:
 
-Through the use of...
+### 1. `gem install`
 
 `$ gem install rubocop --version [desired version]`
 
@@ -46,27 +48,34 @@ Once you have this installed, you can now use the command `rubocop` in the comma
 
 We can use `$ rubocop -v` to check to see if we successfully have rubocop installed and can it will tell us the version of rubocop we are using.
 
-<em><strong>But what is happening here?</strong></em>
+<em><strong>But what is happening here?</strong></em> \n
 When we run the installation command, we are installing a ruby gem using the ruby package manager.
 
 <ol>
-  <li>`gem` tells our system that we're wanting to use the gem package manager.</li>
-  <li>`install` tells the package manager to install a gem file/package to our system.</li>
-  <li>`rubocop` tells the package manager what file from the gems directory to install.</li>
-  <li>`--version` tells the package manager what version of rubocop to install.</li>
+  <li> `gem` tells our system that we're wanting to use the gem package manager.</li>
+  <li> `install` tells the package manager to install a gem file/package to our system.</li>
+  <li> `rubocop` tells the package manager what file from the gems directory to install.</li>
+  <li> `--version` tells the package manager what version of rubocop to install.</li>
 </ol>
 
 I had some troubles douwnloading rubocop this way, but with a little bit of digging I was able to figure it out.
 
 In my case I had to manually update the `$PATH` of the terminal (I use .zsh).
+
 The `$PATH` is a directory in the Unix system that your terminal will reference to find a command.
 `$PATH` itself is a file that contains a list of file paths to directories all seperated by colons.
-When we run a command our terminal will go to the `$PATH` file and look through each of these directories in the list one-by-one until it finds the command that you typed that matches a file in the directory.
-By running `echo $PATH` you can see what directories are currently listed. In my case the path to the directory that was storing the rubocop file that our terminal needs to reference, was not included in the `$PATH`.
-So what I had to do was add it.
 
-<em>But how do I find the path to rubocop??</em>
-You can find it by running the command `gem env` (`env` short for 'enviornment'). This command will bring up a list of specs and information about the currently set-up and enviornment of the version of Ruby on your system.
+When we run a command our terminal will go to the `$PATH` file and look through each of these directories in the list one-by-one until it finds the command that you typed that matches a file in the directory.
+
+By running `echo $PATH` you can see what directories are currently listed. In my case the path to the directory that was storing the rubocop file that our terminal needs to reference, was not included in the `$PATH`.
+
+<em>So what I had to do was add it...</em>
+
+<strong><em>But how do I find the path to rubocop??</em></strong>
+
+You can find it by running the command `gem env` (`env` short for 'enviornment').
+
+This command will bring up a list of specs and information about the currently set-up and enviornment of the version of Ruby on your system.
 
 If you look you will find `EXECUTABLE DIRECTORY`, beside it is the file path to a folder with the 'executables' you will be running (files that your terminal will reference when you type a command).
 
@@ -75,7 +84,61 @@ In my case it looked like this: `/opt/homebrew/lib/ruby/gems/3.2.0/bin`
 To confirm that the rubocop executable file was located in this directory I did `cd /opt/homebrew/lib/ruby/gems/3.2.0/bin` and then `ls`. Sure enough, rubocop was located there.
 
 So, I opened up `$PATH` and added this directory.
-Add the end of the file, simply add `export PATH="/file/path/to/my/executables/directory:$PATH"`
-Save. Close file. Quit your terminal. Reopen your terminal.
 
-There's my work around to making that function!
+To the end of the file, simply add:
+`export PATH="/file/path/to/my/executables/directory:$PATH"`
+
+Save.
+Close file.
+Quit your terminal.
+Reopen your terminal.
+
+There's my work around for making that function!
+
+### 2. Gemfile method
+
+With this method you don't need to use the `gem install` command.
+
+A Gemfile is a file that your bundler references to manage dependencies.
+
+In simple, this just means it makes sure that libraries and packages that our project is dependent on don't have conflicts and keep things consistent throughout different development environments, allowing a way for other developers to see what packages a project is using and an easy way for them to download those dependencies.
+
+How do we create a Gemfile then?
+Simple:
+
+1. create a file in the repo or directory you want to have rubocop in.
+   `touch Gemfile`
+
+2. Add this to the file:
+
+```ruby
+source 'https://rubygems.org'
+
+group :development do
+  gem 'rubocop', '1.51.0'
+end
+```
+
+3. Done!
+
+<hr>
+
+## How to Use Rubocop?
+
+Now that we have rubocop installed how do we use it?
+
+If you used method 1 with `gem install` then all you need to do is run the command `rubocop your-file.rb` in your terminal and rubocop will execute on that file.
+
+If you used method 2 with a `Gemfile` then you need to run `bundle exec rubocop your-file.rb` in your terminal and rubocop will execute on that file
+
+When you run rubocop it will show you:
+
+- How many files it inspected
+- The type of offense (C - <em>convention</em>, W - <em>warning</em>, E - <em>error</em>, F - <em>fatal</em>, )
+- Offenses committed
+- Offenses contain:
+- the name of the file it was found in
+- The line number and column number
+- The type of offense
+- The name of the offense
+- A display of the code where it found the error
