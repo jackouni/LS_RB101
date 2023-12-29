@@ -197,19 +197,19 @@ And for the time being, we can just do this all manually. When things get more c
 Here's why patience is a great temperment for debugging:
 Often times being able to go through code line-by-line, word-by-word, character-by-character is often necessary in spotting bugs.
 
-### Rubber Ducking
+### 2. Rubber Ducking
 
 This is just talking it out loud or trying to explain the code to someone else.
 
 It doesn't even have to be someone else though, it can be a anything, a rubber duck on your desk even?
 
-### Walking Away
+### 3. Walking Away
 
 Sometimes taking a break and letting the diffused mode of your brain solve a problem is best. You can only exhaust the logic and focued modes of your brain for so long before minimal is gained.
 
 Take a break. Have a shower, play a sport, go for a walk, take a nap.
 
-### Using `Pry`
+### 4. Using `Pry`
 
 `pry` is a debugging tool in Ruby that we can use in to manually walk or step-through our code.
 
@@ -253,6 +253,6 @@ We can also reassign the values in realtime, so we can experiment.
 
 Notice that if we reassign `counter` to equal `"FIVE"` (during our Pry session), next time we press `ctrl + D` we'll get an error because we can't add an Integer to a String.
 
-### Debuggers
+### 5. Debuggers
 
 This is a more advanced topic and will be introduced in later lessons/assignments.
