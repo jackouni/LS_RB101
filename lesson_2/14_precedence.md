@@ -6,7 +6,7 @@ These are a set of rules for Ruby to follow when evaluating an expression.
 Which parts of this expression do I evaluate first?
 It's the _precedence of operators in expressions in Ruby_
 
-### 2 Main Terms to sort out:
+#### 2 Main Terms to sort out:
 
 1. **Operators**
 
@@ -23,7 +23,7 @@ a + b
 
 2. **Operand**
 
-> _Are/is the value(s) that is/are being used in an operation, specified by an operator._
+> _Is an evaluated expression. This essentially just means a "value"._
 
 _Example:_
 
@@ -32,4 +32,121 @@ a + b
 
 # Where `a` and `b` in this expression are the operands
 
+```
+
+<hr>
+
+## Types of Operators:
+
+1. ### Unary
+   > Is an operator that needs 1 operand to perform an operation/action.
+
+_Example:_
+
+```ruby
+!true
+
+# Where `!` in the above expression is the unary operator
+
+```
+
+In the example above you can see that the `!` operator only needs 1 value, it's job is to negate the value of whatever proceeds it. It doens't act on multiple values, it acts on a single evaluated expression.
+
+2. ### Binary
+   > Is an operator that needs 2 operands to perform an operation/action.
+
+_Example:_
+
+```ruby
+10 * 11
+
+# Where `*` in the above expression is the binary operator
+
+10 > 11
+
+# Where `>` in the above expression is the binary operator
+
+x = 180
+
+# Where `=` in the above expression is the binary operator
+
+"HEY YOU!" + (!true).to_s
+
+# Where `+` in the above expression is the binary operator
+
+```
+
+In the example above you can see that the binary operators need 2 operands to perform an operation.
+If you only have a value on 1 side of the operator, it will not be able to perform an operation. It needs 2 evaluated expressions.
+
+Binary operators are the most common operators and are the ones you'll encountered in most cases.
+
+3. ### Ternary
+   > Is an operator that needs 3 operands to perform an operation/action.
+
+_Example:_
+
+```ruby
+10 > 9 ? true : false
+
+# Where `?` and `:` in the above expression is the ternary operator
+
+# `10 > 9` and `true` and `false` are the operands here
+
+
+```
+
+In the example above you can see that the ternary operator needs 3 operands to perform an operation.
+In the example above the first expression is evaluated and if the expression evaluates to true it returns the first value otherwise it returns the value after the colon.
+
+<hr>
+
+### Using `tap`
+
+<hr>
+
+### A List of Operator Precedence from Highest to Lowest:
+
+```
+!, ~, unary +
+
+**
+
+unary -
+
+*, /, %
+
++, -
+
+<<, >>
+
+&
+
+|, ^
+
+>, >=, <, <=
+
+<=>, ==, ===, !=, =~, !~
+
+&&
+
+||
+
+.., ...
+
+?, :
+
+modifier-rescue
+
+=, +=, -=, etc.
+
+defined?
+
+not
+
+or, and
+
+modifier-if, modifier-unless, modifier-while, modifier-until
+
+{ } blocks
 ```
