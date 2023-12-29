@@ -98,6 +98,62 @@ Let's trace the code. First let's trace through each call and see if we diagnose
 
 We can now try to go through each call or each section of the problem and see what the values and methods return to us.
 
+_Example:_
+
+```ruby
+def first_word(sentence)
+  sentence.split(" ")[0]
+end
+
+puts first_word("Hello World!") # => "Hello"
+```
+
+This method above, it works, but let's say we wanted to debug it and understand it.
+
+1st Let's see what is returned from just `sentence`:
+
+```ruby
+def first_word(sentence)
+  sentence
+end
+
+p first_word("Hello World!") # => "Hello World!"
+```
+
+Ok, that `sentence` returns what it should be returning on its own.
+
+_Notice I used `p` method to get a more accurate view of what's being returned, whereas `puts` just prints out strings to a terminal._
+
+Let's see what that `split` method returns:
+
+```ruby
+def first_word(sentence)
+  sentence.split
+end
+
+p first_word("Hello World!") # => ["Hello", "World!"]
+```
+
+Ok, the `split` method returns what we expected, an array of the words in the sentence.
+
+Now, we can add the `" "` as an argument to see what is returned.
+_For sake of brevity it'll return the same thing as the last step._
+
+Now we can try and accessing elements from the array that is returned from the `sentence.split(" ")` and see what we get:
+
+```ruby
+def first_word(sentence)
+  sentence.split(" ")
+end
+
+puts first_word("Hello World!")[0] # => "Hello"
+puts first_word("Hello World")[1] # => "World"
+```
+
+See how we can break down our methods and sample each part in sequence to figure out how it works overall?
+
+This is apart of understanding the problem.
+
 ### 5. Implement a Fix
 
 ### 6. Test the Fix
