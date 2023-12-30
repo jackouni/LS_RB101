@@ -103,6 +103,48 @@ In the example above the first expression is evaluated and if the expression eva
 
 ### Using `tap`
 
+The `tap` method is a good way to go about debugging and to access objects in an expression to understand them.
+
+`tap` takes a block and the block variable passed represents the calling object itself. Inside this block we can manuipulate or do things with the object if we want to.
+
+`tap` always returns the object itself though, regardless of what happens within the block.
+
+_Simple example:_
+
+```ruby
+# `tap` with an empty block:
+
+array  = [1,2,3]
+
+p array.tap { } # => [1,2,3]
+
+```
+
+_`tap` actually doing stuff:_
+
+```ruby
+array.tap do |x|
+  x.each { |item| puts item}
+end
+
+# => 1
+# => 2
+# => 3
+
+```
+
+<hr>
+
+### Use Parentheses!
+
+Parentheses are a way to make sure things are predicatable.
+
+We can add bracket around our expressions. That way the expressions contained in the brackets get highest priority and we can be more certain about the precedence of things in more complex expressions.
+
+Sure, you could predict the precedence of all these operators, but it doesn't necessarily make your code more readable nor does it make it easier for others to edit and review if they don't understand or have precedence memorized.
+
+Use parentheses!!
+
 <hr>
 
 ### A List of Operator Precedence from Highest to Lowest:
