@@ -1,3 +1,6 @@
+require 'yaml'
+MESSAGES = YAML.load_file('15_calculator-messages.yml')
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end 
@@ -15,27 +18,29 @@ def number?(num)
 end 
 
 def operation_to_message(op)
-  case op
-  when '1'
-    'Adding'
-  when '2'
-    'Subtracting'
-  when '3'
-    'Multiplying'
-  when '4'
-    'Dividing'
-  end 
+operation = case op
+            when '1'
+              'Adding'
+            when '2'
+              'Subtracting'
+            when '3'
+              'Multiplying'
+            when '4'
+              'Dividing'
+            end
+
+  operation
 end 
   
 name = ''
 
-prompt("What's you name?")
+prompt(MESSAGES['getName'])
 
 loop do
   name = Kernel.gets().chomp()
 
   if name.empty?()
-    prompt("Make sure to enter a valid name.")
+    prompt(MESSAGES['getName'])
   else 
     break
   end 
@@ -47,32 +52,32 @@ loop do # main loop
   first_number = nil 
 
   loop do
-    prompt("What's your first number?")
+    prompt(MESSAGES['getFirstOperand'])
     first_number = Kernel.gets().chomp()
 
     if integer?(first_number)
       break
     else
-      prompt("Please enter a valid number")
+      prompt(MESSAGES['enterValidNumber'])
     end 
   end 
 
   second_number = nil 
 
   loop do
-    prompt("What's your second number?")
+    prompt(MESSAGES['getSecondOperand'])
     second_number = Kernel.gets().chomp()
 
     if integer?(second_number)
       break
     else
-      prompt("Please enter a valid number")
+      prompt(MESSAGES['enterValidNumber'])
     end 
   end 
 
   operator = nil 
 
-  prompt( "What operation would you like to perform?\n1) add \n2) subtract \n3) multiply \n4) divide" )
+  prompt(MESSAGES['getOperator'])
 
   loop do 
     operator = Kernel.gets().chomp()
@@ -80,7 +85,7 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else 
-      prompt("Please choose numbers 1, 2, 3 or 4.")
+      prompt(MESSAGES['enterValidOperator'])
     end 
   end 
 
@@ -97,23 +102,23 @@ loop do # main loop
 
   prompt("#{operation_to_message(operator)} the two numbers equals #{result.to_s}")
 
-  prompt("Do you want to perform another calculation?")
+  prompt(MESSAGES['performAnother'])
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end 
 
-prompt("Thank you for using this calculator. Goodbye.")
+prompt(MESSAGES['thankYouAndExit'])
 
 # FEATURES TO ADD:
 
 =begin 
-1. Better integer validation. ✅
+1. Better integer validation ✅
 
   The current method of validating the input for a number is very weak. 
   It's also not fully accurate, as you cannot enter a 0. 
   Come up with a better way of validating input for integers.
 
-2. Number validation.
+2. Number validation ✅
 
   Suppose we're building a scientific calculator, 
   and we now need to account for inputs that include decimals. 
