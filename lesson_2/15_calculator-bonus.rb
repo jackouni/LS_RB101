@@ -1,6 +1,10 @@
 require 'yaml'
 MESSAGES = YAML.load_file('15_calculator-messages.yml')
 
+def messages(message, lang='english')
+  MESSAGES[[lang][message]]
+end 
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end 
@@ -125,12 +129,12 @@ prompt(MESSAGES['thankYouAndExit'])
   How can we build a validating method, called `number?``,
   to verify that only valid numbers -- integers or floats -- are entered?
 
-3. Our operation_to_message method is a little dangerous,
+3. Our operation_to_message method is a little dangerous, ✅
   since we're relying on the case statement being the last expression in the method.
   Suppose we needed to add some code after the case statement within the method? 
   What changes would be needed to keep the method working with the rest of the program?
 
-4. Extracting messages in the program to a configuration file.
+4. Extracting messages in the program to a configuration file. ✅
 
   There are lots of messages sprinkled throughout the program. 
   Could we move them into some configuration file and access by key? 
