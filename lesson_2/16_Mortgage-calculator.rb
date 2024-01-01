@@ -14,24 +14,24 @@
 
 =end
 
-def loan_with_interest( loan_amount, monthly_interest_rate )
-  total_payments = loan_amount + ((loan_amount * monthly_interest_rate) / 100)
-  total_payments
-end
-
-def get_monthly_payment( overall_amount_owed, month_duration)
-  overall_amount_owed / month_duration
+def valid_number?(input)
+  if input == input.to_f.to_s 
+    return true
+  elsif input == input.to_i.to_s 
+    return true
+  else 
+    return false
+  end 
 end 
 
-def convert_year_to_month( year_duration )
-  month_duration = year_duration.to_f * 12.00
-  month_duration.round(2)
+def get_monthly_payment(loan_amount, monthly_interest_rate, month_duration)
+  monthly_payment = loan_amount * (monthly_interest_rate / (1 - (1 + monthly_interest_rate)**(-month_duration)))
+  return monthly_payment
 end 
 
-def convert_apr_to_monthly_rate(apr)
-  monthly = apr.to_f / 12
-  monthly.round(2)
-end
+def apr_to_monthly_interest_rate(apr)
+ return (apr.to_i / 12)
+end 
 
 puts "Welcome to the loan calculator!"
 puts "Enter your loan amount :"
@@ -42,19 +42,18 @@ user_loan_amount = gets.chomp
 puts "Enter your loans duration (in years) :"
 user_loan_duration = gets.chomp
 
-# valid_duration?(user_loan_duration)
+# valid_number?(user_loan_duration)
 
 puts "Enter your APR (annual interest rate) :"
 user_apr = gets.chomp
 
 # valid_number?(user_interest_rate)
 
-user_overall_amount_owing = loan_with_interest(user_loan_amount.to_f, user_apr.to_f).round(2)
-user_monthly_percentage_rate = convert_apr_to_monthly_rate(user_apr.to_f).round(2)
-user_month_duration = convert_year_to_month(user_loan_duration.to_f).round(2)
-user_monthly_payments = get_monthly_payment(user_overall_amount_owing, user_month_duration).round(2)
+user_monthly_interest = (user_apr.to_f / 12) / 100 # (In decimal format)
+user_month_duration = user_loan_duration.to_f * 12
 
-puts "• Overall owing amount (Loan + Interest) = $#{user_overall_amount_owing}"
-puts "• Loan duration = #{user_month_duration} months"
-puts "• Monthly interst rate = #{user_monthly_percentage_rate}%"
-puts "• Monthly payment amount = $#{user_monthly_payments} per month"
+monthly_payments = user_loan_amount.to_f * (user_monthly_interest / (1 - (1 + user_monthly_interest)**(-user_month_duration)))
+
+puts "• Total of #{user_month_duration.floor} payments"
+puts "• Monthly Payments of $#{monthly_payments.round(2)}"
+puts "• Monthly Interest rate is #{(user_monthly_interest * 100).round(2)}%"
