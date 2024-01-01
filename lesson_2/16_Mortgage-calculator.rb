@@ -36,7 +36,6 @@ end
 puts "Welcome to the loan calculator!"
 
 loop do # MAIN LOOP
-
   user_loan_amount = nil
 
   loop do 
@@ -78,7 +77,6 @@ loop do # MAIN LOOP
       puts "Please input a valid number!"
     end 
   end 
-    # valid_number?(user_interest_rate)
 
   user_monthly_interest = (user_apr.to_f / 12) / 100 # (In decimal format)
   user_month_duration = user_loan_duration.to_f * 12
