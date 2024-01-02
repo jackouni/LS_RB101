@@ -52,16 +52,14 @@ Because the life cycle or these variables is shorter and contained to that scope
 
 3. ## Naming Conventions
 Here are some naming rules that Ruby Follows:
-  1. #### Naming Classes
-   When naming classes use `CamelCase`. Uppercase for each new word in a name.
-  2. #### Naming Constants
-   When naming constants (variables that shouldn't be changed or modified) use `ALLCAPS`. This means all uppercase letters.
-  3. #### Naming Everything Else
-   When naming anything other than classes or constants use `snake_case`. Each new word in a name is separated by an underscore.
+  - ### Naming Classes
+  When naming classes use `CamelCase`. Uppercase for each new word in a name.
+  - ### Naming Constants
+  When naming constants (variables that shouldn't be changed or modified) use `ALLCAPS`. This means all uppercase letters.
+  - ### Naming Everything Else
+  When naming anything other than classes or constants use `snake_case`. Each new word in a name is separated by an underscore.
 
 _Another thing to note:_
 * Constants can be mutated in Ruby, but we should treat constants like they are immutable.
 
 <hr>
-
-4. ##
