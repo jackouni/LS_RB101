@@ -59,7 +59,42 @@ Here are some naming rules that Ruby Follows:
   - ### Naming Everything Else
   When naming anything other than classes or constants use `snake_case`. Each new word in a name is separated by an underscore.
 
-_Another thing to note:_
+_**Another thing to note:**_
 * Constants can be mutated in Ruby, but we should treat constants like they are immutable.
 
 <hr>
+
+4. ## Methods
+
+Here are some helpful tips for creating methods:
+  - ### Keep 'em Short
+  Methods should be concise, short, and do one thing. This means we should try to keep our methods below 10-ish lines.
+
+  If we go over 15 then maybe consider splitting the method into two or three methods.
+  - ### Displaying Output 🆚 Returning a Value
+  Methods should either: return a meaningful value _OR_ display output to the terminal.
+
+  You should **NOT** have a method that both displays an output and returns a meaningful value. 
+
+  Pick one or the other for your method to do.
+  - ### Side Effects or Not?
+  Decide whether your method should produce side effects or not.
+
+  > A _"side effect"_ is anything where the code outside of a programming scope changes the state of the outer/overall program.
+  > _For Example:_ 
+  > A method that prints something to the console produces a side effect because we are changing the display of our program - a > part outside of the method's scope/unit.
+  > _Another Example:_
+  > A method that mutates the value of a varaible outside of the method's scope, is a method that produces a side effect.
+
+  Either your method performs a side effect or returns a meaningful value. It should **NOT** do both.
+  - ### `return` is Implied
+  In Ruby methods implicitly return a value, so we don't name our methods using descriptors like `return_total(nums)` or `returns_total(nums)` it would just be called `total(nums)`.
+  - ### `return` 🆚 Mutating Naming
+  Consider that we have our method: `total(nums)`
+
+  Does this method return the sum of `nums` passed or does it mutate the total of the `nums` passed? 
+  If you find yourself looking at the method's implementation more often than not, then it might be time to consider changing the method name to be more descriptive. 
+  
+  _For example:_ 
+  `total_of_nums(nums)` could be used to return the total of the `nums` passed.
+  While, `update_total(nums)` could be used to mutate the value of `nums` passed.
