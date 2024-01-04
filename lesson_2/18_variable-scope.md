@@ -5,6 +5,8 @@
 > _"Local Scope"_ as defined as:
 > A block of code contained between either `{ }` (curly braces) or `do ... end`.
 
+<br>
+
 <hr>
 
 ## Basic Scope Rules :
@@ -22,6 +24,8 @@ end
 
 ```
 
+<br>
+
 - You can re-assign the value of variables intialized in the outer scope within a local scope.
 ```ruby
 points = 20
@@ -36,6 +40,8 @@ puts points
 
 ```
 
+<br>
+
 - You cannot access variables intialized in the local scope from the outer scope.
 ```ruby
 loop do
@@ -47,6 +53,8 @@ puts number
 # Will output an error: NameError: undefined local variable or method `number'
 
 ```
+
+<br>
 
 - You cannot re-assign the value of variables intialized in the local scope from the outer scope.
 ```ruby
@@ -188,6 +196,9 @@ This leads us to .....
   my_method() # => NameError: undefined local variable or method `word' ... 
 
   ```
+
+<br>
+
 2. #### Methods can access objects passed to it
   Methods can access varaibles/objects passed to them as arguments though.
 
@@ -201,6 +212,9 @@ This leads us to .....
   my_method(word) # => bird
 
   ```
+
+<br>
+
 3. #### Method name == Variable name
   If a method shares the exact same name as a variable's name, what happens when we call that name in our program? 
 
@@ -232,6 +246,8 @@ This leads us to .....
   puts hello() # => HEYO EARTH!
 
   ```
+
+<br>
 
 4. #### Blocks in Methods
 
