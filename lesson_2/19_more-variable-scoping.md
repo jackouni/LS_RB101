@@ -87,11 +87,9 @@ end
 
 <br>
 
-<hr>
-
 4. ## More on Block Invocation...
 
-- ### Methods can use the return values of blocks
+### Methods can use the return values of blocks
   Consider the `Array#map` method:
   ```ruby
   a = 'hey'
@@ -117,4 +115,4 @@ Method definitions define what local variables a method could have access to in 
 <br>
 Method invocation can be thought of as telling the method what to do within the scope it has defined. 
 <br>
-If a method is defined to take a block, then a block can give our method more flexibility in terms of using locally/outer scoped variables.
+If a method is defined to take a block, then a block can give our method more flexibility in terms of using outer-scoped variables.
