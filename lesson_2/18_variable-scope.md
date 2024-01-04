@@ -5,8 +5,6 @@
 > _"Local Scope"_ as defined as:
 > A block of code contained between either `{ }` (curly braces) or `do ... end`.
 
-<br>
-
 <hr>
 
 ## Basic Scope Rules :
@@ -133,6 +131,8 @@ The `movie` variable within the context of the block scope represents each item 
 
 The `movie` block variable is _'shadowing'_ the outer scoped `movie` variable.
 
+<br>
+
 This also means we cannot reassign the value of an outer variable we're shadowing:
 ```ruby
 x = 100
@@ -146,6 +146,8 @@ puts x
 
 ```
 The `x` variable defined in the above example exists within that block scope and techincally is being intialized.
+
+<br>
 
 #### _In the case of Method Definitions..._
 
@@ -276,7 +278,7 @@ This leads us to .....
 Constants in Ruby have different scoping rules when compared to local variables.
 
 **Differences with Constants and Scoping:**
-- Constants _**CAN**_ be accessed from within Method definitions
+1. Constants _**CAN**_ be accessed from within Method definitions
   ```ruby
   USER = "Jack"
 
@@ -288,7 +290,9 @@ Constants in Ruby have different scoping rules when compared to local variables.
   # Unlike local variables, this works ^^^
 
   ```
-- Constants intialized within blocks can also be accessed from the outer scope.
+<br>
+
+2. Constants intialized within blocks can also be accessed from the outer scope.
   ```ruby
   1.times do 
     CITY = "TORONTO"
@@ -297,8 +301,12 @@ Constants in Ruby have different scoping rules when compared to local variables.
   puts CITY #=> TORONTO
 
   ```
-- Blocks are said to have _"lexical scope"_. This will be covered in later lessons.
+<br>
+
+3. Blocks are said to have _"lexical scope"_. This will be covered in later lessons.
 
 <hr>
+
+<br>
 
 This is everything from that assignment. Next assignment covers even more about variable scoping.
