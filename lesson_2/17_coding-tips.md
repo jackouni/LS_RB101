@@ -54,8 +54,10 @@ Because the life cycle or these variables is shorter and contained to that scope
 Here are some naming rules that Ruby Follows:
   - ### Naming Classes
   When naming classes use `CamelCase`. Uppercase for each new word in a name.
+
   - ### Naming Constants
   When naming constants (variables that shouldn't be changed or modified) use `ALLCAPS`. This means all uppercase letters.
+
   - ### Naming Everything Else
   When naming anything other than classes or constants use `snake_case`. Each new word in a name is separated by an underscore.
 
@@ -65,8 +67,8 @@ _**Another thing to note:**_
 <hr>
 
 4. ## Methods
-
 Here are some helpful tips for creating methods:
+
   - ### Keep 'em Short
     Methods should be concise, short, and do one thing. This means we should try to keep our methods below 10-ish lines.
 
@@ -89,6 +91,7 @@ Here are some helpful tips for creating methods:
   > A method that mutates the value of a varaible outside of the method's scope, is a method that produces a side effect.
 
     Either your method performs a side effect or returns a meaningful value. It should **NOT** do both.
+
   - ### `return` is Implied
     In Ruby methods implicitly return a value, so we don't name our methods using descriptors like `return_total(nums)` or `returns_total(nums)` it would just be called `total(nums)`.
 
@@ -103,3 +106,73 @@ Here are some helpful tips for creating methods:
     While, `update_total(nums)` could be used to mutate the value of `nums` passed.
 
   - ### Method Abstraction Levels
+    Methods need to maintain a similar level of abstraction in your program. This means, they reveal a similar amount of details or maintain a theme. 
+    
+    Your methods should have the ability to be tested individually outside of your project, to keep things simple as well as more test-able.
+
+    You don't want to start mixing your lower-level methods with out higher-level methods and we want to keep the naming similar. 
+    It's like having a consistent theme of methods that describe what they do in the name, and then having a method that describes how something is done.
+
+    This is a hard point to understand because a lot of it is a _code smell_ that you will develop overtime that feels intuitive.
+
+  - ### Names Should Reflect Mutations
+    Method names should reflect mutations made.
+
+    Words like `update`, `change` or `set` within a method title should imply that there is a mutation happening somewhere.
+
+    If there is no mutation then consider using words like `get` or `retrieve` or `display`. 
+
+    These are only suggestions, and in the moment you'll have to decide the appropriate naming.
+  
+  - ### Methods That Output
+    If a method prints or outputs something to the terminal then the method name should reflect that. 
+
+    If your method displays something then consider using words like `print`, `puts` or `display` in your method's title.
+
+<hr>
+
+5. ## Misc. Tips
+
+Here are some other miscellaneous tips:
+
+  - _**Methods should not prematurely exit the program.**_ 
+    This may create undesired and less predictable behaviour. Generally you want to have one _"exit point"_ in your program, one way to exit.
+
+  - _**Don't be too Verbose**_
+    If you can keep your naming more concise this is a big bonus. 
+    _For example:_
+    _`def find_ace(cards)`_ 🆚 _`def find_ace_in_cards(cards)`_
+    The first definition along with the parameter implies that we are finding an ace from a deck of cards. 
+    The second method is very descriptive, but it also leads more room for questions and interpretations. Another dev might look at the second method and think _"What else can you find an ace from besides cards? Tiles?"_. 
+    If we can minimize the amount of questions or mental hoops the better.
+  
+  - _**Do While 🆚 Do Loop**_ 
+    Sometimes using a `while ... do` loop is a better idea than a `loop do` loop and vice versa.
+    Try to determine which one is more concise and readable before just jumping into using one.
+
+    _Here are some examples:_
+
+    ```ruby
+    answer = ''
+    while answer.downcase != 'n' do
+      puts "Continue? (y/n)"
+      answer = gets.chomp
+    end
+    ```
+    > Notice we have to initialize `answer` before the loop and then have to apply some negating logic.
+    > This could be a little more complicated compared to a normal `loop do`. 
+    > Here it is:
+    ```ruby
+    loop do
+      puts "Continue? (y/n)"
+      answer = gets.chomp
+      break if answer.downcase == 'n'
+    end
+    ```
+    > This is a bit more straight forward and easier to read. No weird negating logic and the `break` case is pretty easy to 
+    > understand.
+
+<hr>
+
+Remember, you don't just "master Ruby" and then "master Rails" and then "master x, y and z".
+Learning isn't linear like that. The truth is you'll probably be revisiting all these topics from time and time again. It takes time to solidify. So expect to be revisiting these topics and don't expect to have it all in your head after one continuous effort. Maintenance and reminders will be happening alone the way!
