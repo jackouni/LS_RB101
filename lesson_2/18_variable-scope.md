@@ -3,8 +3,8 @@
   > A _variable scope_ is used to describe where in a program a variable can and can't be accessed from.
 
   ## Basic Scope Rules :
-    > _"Local Scope"_ as defined as:
-    > A block of code contained between either `{ }` (curly braces) or `do ... end`.
+> _"Local Scope"_ as defined as:
+> A block of code contained between either `{ }` (curly braces) or `do ... end`.
 
     - You can access variables intialized in the outer scope within a local scope.
   ```ruby
