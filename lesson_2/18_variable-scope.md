@@ -1,6 +1,6 @@
 <h1 style="text-align: center;"><ins>Variable Scope</ins></h1>
 
-<div style="display: flex ; justify-items: center ;"><blockquote>A _variable scope_ is used to describe where in a program a variable can and can't be accessed from.</blockquote></div>
+<blockquote style="text-align: center;">A _variable scope_ is used to describe where in a program a variable can and can't be accessed from.</blockquote>
 
 > _"Local Scope"_ as defined as:
 > A block of code contained between either `{ }` (curly braces) or `do ... end`.
