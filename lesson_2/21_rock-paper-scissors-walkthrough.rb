@@ -31,6 +31,13 @@ def display_scores(player_score, computer_score)
   puts " "
 end
 
+def display_round_number(round)
+  puts "--------------------------"
+  puts "\tROUND #{round}"
+  puts "--------------------------"
+  puts " "
+end 
+
 def valid_choice?(choice)
   OPTIONS.include?(choice.downcase) 
 end 
@@ -40,7 +47,7 @@ def valid_answer?(answer)
 end 
 
 def get_computers_choice()
-  # OPTIONS.pick_random_num(3)
+  OPTIONS.sample()
 end
 
 def get_players_choice
@@ -110,13 +117,10 @@ def play_round
   player_score = 0
 
   loop do
-    puts "--------------------------"
-    puts "\tROUND #{round}"
-    puts "--------------------------"
-    puts " "
+    display_round_number(round)
 
     players_choice = get_players_choice()
-    computers_choice = 'rock' # get_computers_choice()
+    computers_choice = get_computers_choice()
     winner = evaluate_winner(players_choice, computers_choice)
 
     case winner
@@ -137,8 +141,3 @@ def play_round
 end 
 
 play_round()
-
-
-
-
-
