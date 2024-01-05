@@ -38,6 +38,11 @@ def display_round_number(round)
   puts " "
 end 
 
+def display_choices(players_choice, computers_choice)
+  prompt("You played: #{players_choice}") 
+  prompt("Computer played: #{computers_choice}")
+end 
+
 def valid_choice?(choice)
   OPTIONS.include?(choice.downcase) 
 end 
@@ -88,9 +93,10 @@ def player_discontinues?
 end
 
 def evaluate_winner(players_choice, computers_choice)
-  prompt("You played: #{players_choice}") 
-  prompt("Computer played: #{computers_choice}")
-  winner = nil
+
+  display_choices(players_choice, computers_choice)
+  winner = 'tie'
+
   if (players_choice == 'rock' && computers_choice == 'scissors') || (players_choice == 'paper' && computers_choice == 'rock') || (players_choice == 'scissors' && computers_choice == 'paper')
     prompt("🥳 YOU WON!")
     puts " "
@@ -135,7 +141,6 @@ def play_round
     break if player_discontinues?()
 
     round += 1
-    winner = nil
 
   end 
 end 
