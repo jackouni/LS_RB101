@@ -24,8 +24,19 @@ def prompt(message)
   puts "=> #{message}"
 end
 
+def display_scores(player_score, computer_score)
+  prompt("SCORES:")
+  prompt("You => #{player_score}")
+  prompt("Computer => #{computer_score}")
+  puts " "
+end
+
 def valid_choice?(choice)
-  choice.is_a?(String) && OPTIONS.include?(choice.downcase) 
+  OPTIONS.include?(choice.downcase) 
+end 
+
+def valid_answer?(answer)
+  CONTINUE_ANSWERS.include?(answer.downcase) || EXIT_ANSWERS.include?(answer.downcase)
 end 
 
 def get_computers_choice()
@@ -45,41 +56,49 @@ def get_players_choice
   choice.downcase 
 end 
 
-def player_continues?(answer)
-  continue = nil
+def player_discontinues?
+  player_continues = nil
   loop do
-    prompt("Would you like to play again? \nType 'y' (Yes) or 'n' (No)")
-    does_player_continue = gets.chomp
-    if CONTINUE_ANSWERS.include?(does_player_continue.downcase)
-      continue = true
-      break
-    elsif EXIT_ANSWERS.include?(does_player_continue.downcase)
-      continue = false
-      break
+    prompt("Would you like to play again?")
+    prompt("Type 'y' (Yes) or 'n' (No)")
+    answer = gets.chomp
+
+    if valid_answer?(answer)
+      if CONTINUE_ANSWERS.include?(answer.downcase)
+        player_continues = false
+        break
+      else
+        player_continues = true
+        break
+      end
     else
-      prompt("ERROR: Please type a valid answer!!")
-      puts " "
-      continue = nil
-      break
+      prompt("ERROR: Please enter a valid answer!!")
     end 
   end
 
-  continue 
+  player_continues 
+
 end
 
 def evaluate_winner(players_choice, computers_choice)
   prompt("You played: #{players_choice}") 
   prompt("Computer played: #{computers_choice}")
+  winner = nil
   if (players_choice == 'rock' && computers_choice == 'scissors') || (players_choice == 'paper' && computers_choice == 'rock') || (players_choice == 'scissors' && computers_choice == 'paper')
     prompt("🥳 YOU WON!")
     puts " "
+    winner = 'player'
   elsif (players_choice == computers_choice)
     prompt("😑 TIE GAME!")
     puts " "
   else 
     prompt("🖥️  YOU LOST TO THE COMPUTER!")
     puts " "
+    winner = 'computer'
   end 
+  
+  winner
+
 end 
 
 def play_round
@@ -97,21 +116,23 @@ def play_round
     puts " "
 
     players_choice = get_players_choice()
-    # compuer_choice = get_computers_choice()
-    computers_choice = 'paper'
-    evaluate_winner(players_choice, computers_choice)
+    computers_choice = 'rock' # get_computers_choice()
+    winner = evaluate_winner(players_choice, computers_choice)
 
-    prompt("Would you like to play again?")
-    prompt("Type 'y' (Yes) or 'n' (No)")
-    does_player_continue = gets.chomp
-    puts " "
+    case winner
+    when 'player'
+      player_score += 1
+    when 'computer'
+      computer_score += 1
+    end
+    
+    display_scores(player_score, computer_score)
 
-    if does_player_continue == 'n' || does_player_continue == 'no'
-      prompt("Thank you for playing. Goodbye!")
-      break
-    end 
+    break if player_discontinues?()
 
     round += 1
+    winner = nil
+
   end 
 end 
 
