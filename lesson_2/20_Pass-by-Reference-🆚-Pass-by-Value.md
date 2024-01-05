@@ -105,3 +105,55 @@ puts obj #=> joe
 <hr>
 
 ## What is Ruby Doing Here? What's the Verdict?
+As we can see Ruby exhibits both _pass by reference_ and _pass by value_.
+
+> _"Some people call this **'pass by value of the reference'** or **'call by sharing'**."_
+  > _~ Launch School_
+
+When an operation within a method definition mutates the caller object, the method is modifying the original object.
+
+So, how can we tell when we're working with a method that references an object directly 🆚 one that uses a copy of the object?
+
+**Answer:**
+There are some things that indicate a method will mutate an object, these are defined with `!` appended to the end of the method name. 
+
+> Methods like: `capitalize!`, `map!`, `downcase!`.
+
+If a `!` is not present at the end of a method name, this does not guarentee that the method isn't destructive or that it won't mutate the caller object. The `!` is merely a naming convention, and does **NOT** give you any guarentees.
+
+> `Array#<<` method is destructive and will mutate a caller object, but obviously does not contain a `!` in it.
+
+#### Reassignment is Not Destructive
+
+```ruby
+def add_value(array, value)
+  array = array + [value]
+end 
+
+nums = [20, 15, 10, 5]
+add = 1
+
+add_value(nums, add)
+p nums #=> [20, 15, 10, 5]
+
+```
+Notice that reassignment is not a destructive operation. `nums` is not changed or mutated.
+ 
+But with some slight changes we can make it destructive:
+```ruby
+def add_value(array, value)
+  array = array << value
+end 
+
+nums = [20, 15, 10, 5]
+add = 1
+
+add_value(nums, add)
+p nums #=> [20, 15, 10, 5, 1]
+
+```
+
+This tells us that `+` operation is returning a new value from the expression.
+
+Whereas, `<<` is directly modifying a value in the expression.
+
