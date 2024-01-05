@@ -43,6 +43,14 @@ def display_choices(players_choice, computers_choice)
   prompt("Computer played: #{computers_choice}")
 end 
 
+def is_random_choice?(choice)
+  choice.downcase == 'random'
+end 
+
+def get_random_choice
+  OPTIONS.sample()
+end 
+
 def valid_choice?(choice)
   OPTIONS.include?(choice.downcase) 
 end 
@@ -59,12 +67,17 @@ def get_players_choice
   choice = nil
   loop do
     prompt("Choose one of the following options:")
-    prompt("Rock • Paper • Scissors")
+    prompt("Rock • Paper • Scissors • Random")
     choice = gets.chomp 
+
+    if is_random_choice?(choice)
+      choice = get_random_choice() 
+    end 
     break if valid_choice?(choice)
+
     prompt("ERROR: Please type a valid option!! \n")
   end
-  puts " "
+  puts " " 
   choice.downcase 
 end 
 
@@ -146,3 +159,8 @@ def play_round
 end 
 
 play_round()
+
+#---------------------------------------------#
+#---------------> WALK-THROUGH <---------------#
+#---------------------------------------------#
+
