@@ -160,7 +160,60 @@ end
 
 play_round()
 
+puts("----------------------------------------")
+puts("----------------------------------------")
+puts("----------------------------------------")
+
 #---------------------------------------------#
 #---------------> WALK-THROUGH <---------------#
 #---------------------------------------------#
 
+=begin
+  'wt' will be used for any duplicate methods from my 
+  version of the game to distinguish between the two games.
+=end
+
+Kernel.puts("Welcome to LS's 'Rock. Paper, Scissors'!")
+
+VALID_CHOICES =  ["rock", "paper", "scissors"]
+
+def prompt_wt(message)
+  Kernel.puts "=> #{message}"
+end
+
+loop do
+  choice = ''
+
+  loop do
+    prompt_wt("Choose one: #{VALID_CHOICES.join(', ')}")
+    choice = Kernel.gets().chomp()
+
+    if VALID_CHOICES.include?(choice)
+      break
+    else 
+      prompt_wt("That's not a valid choice.")
+    end 
+  end 
+
+  computer_choice = VALID_CHOICES.sample()
+  
+  prompt_wt("You chose: #{choice}; Computer chose: #{computer_choice};")
+
+  if choice == 'rock' && computer_choice == 'scissors'  ||
+    choice == 'scissors' && computer_choice == 'paper' ||
+    choice == 'paper' && computer_choice == 'rock'
+    prompt_wt("You won!")
+  elsif choice == 'rock' && computer_choice == 'paper'  ||
+    choice == 'scissors' && computer_choice == 'rock' ||
+    choice == 'paper' && computer_choice == 'scissors' 
+    prompt_wt("You lost.")
+  else
+    prompt_wt("It's a tie.")
+  end 
+
+  prompt_wt("Do you want to play again?")
+  answer = Kernel.gets().chomp()
+  break unless answer.downcase().start_with?('y')
+end
+
+prompt_wt("Thank you for playing. Goodbye!")
