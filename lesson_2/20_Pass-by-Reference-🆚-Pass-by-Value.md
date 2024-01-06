@@ -4,7 +4,7 @@
 > A debate on what Ruby does under the hood when passing objects to methods.
 > Are objects passed to methods _references_ to that object in memory, or are they _copies_ of that object?
 
-### Defining Terms & Vocab:
+### Starting Terms & Vocab:
 
 - #### "_Values_"
 > In context to this lesson, _values_ represent a copy of an object. The value of an object is a copy of the object.
@@ -211,46 +211,53 @@ Whereas, `<<` is directly modifying a value in the expression.
   a = "Hi"
   b = "Bye"
 
-  puts a.object_id
-  puts b.object_id
+  puts a.object_id # => 60
+  puts b.object_id # => 80
 
   ```
   > Running the above code, you should get 2 different "memory addresses" printed for `a` and `b`.
   > `a` and `b` take up two different spots in memory.
+
+  <br>
 
   _But, what if we modify these values??_
   ```ruby
   a = "Hi"
   b = "Bye"
 
-  puts " 'a' before => #{a.object_id}"
-  puts " 'b' before => #{b.object_id}"
+  puts " 'a' before => #{a.object_id}"                  # => 60
+  puts " 'b' before => #{b.object_id}"                  # => 80
 
   b = a
 
-  puts " 'b' reassigned to 'a' => #{b.object_id}"
+  puts " 'b' reassigned to 'a' => #{b.object_id}"       # => 60
 
   a = "Hallo"
 
-  puts " 'a' reassigned to \"Hallo\" => #{a.object_id}"
-  puts " 'b' => #{b.object_id}"
+  puts " 'a' reassigned to \"Hallo\" => #{a.object_id}" # => 100
+  puts " 'b' => #{b.object_id}"                         # => 60
 
   ```
   > After assigning `b` to `a` we can see that `b` is exhibiting the expected behaviour, it's following `a`'s pointer and pointing to the same spot in memory.
   > After reassigning `a` to a new value, the object ID of `a` is now changed.
   > The object ID of `b` is still the same as the original `a` though.
 
+  <br>
+
   _What if we reassign something to the same value?_
   ```ruby
   a = "LS"
 
-  puts " 'a' object ID => #{a.object_id}"
+  puts " 'a' object ID => #{a.object_id} " # => 60
 
-  a = "LS"
+  a = "LS" # reassigning `a` to "LS", again
 
-  puts " 'a' object ID => #{a.object_id}
+  puts " 'a' object ID => #{a.object_id} " # => 80
 
   ```
+
+  <br>
+
   > Strangely, even though we reassigned the value of `a` to be the exact same as it was originally, it still created a new place in memory for this reassignment.
 
   <br>
@@ -258,11 +265,11 @@ Whereas, `<<` is directly modifying a value in the expression.
   ```ruby
   a = "LS"
 
-  puts " 'a' object ID => #{a.object_id}"
+  puts " 'a' object ID => #{a.object_id} " # => 60
 
-  b = "LS"
+  b = "LS" # `b` points to a spot in memory containing a String, "LS"
 
-  puts " 'b' object ID => #{b.object_id}
+  puts " 'b' object ID => #{b.object_id} " # => 80
 
   ```
   >  We can see this in this example too. `=` creates a duplicate of the value `"LS"` in memory.
@@ -273,14 +280,15 @@ Whereas, `<<` is directly modifying a value in the expression.
   ```ruby
   a = 10
 
-  puts " 'a' object ID => #{a.object_id}"
+  puts " 'a' object ID => #{a.object_id} " # => 21
 
-  a = 10
+  a = 10 # Reassignment here, doesn't change the pointer in memory 
 
-  puts " 'a' object ID => #{a.object_id}
+  puts " 'a' object ID => #{a.object_id} " # => 21
 
   ```
-  > Despite us reassigning the value of `a` using the `=` operator, the object ID is still the same. It did not create a new space in memory like in our previous examples.
+  > Despite us reassigning the value of `a` using the `=` operator, the object ID is still the same. It did not create a new
+  > space in memory like in our previous examples.
 
   <br>
 
@@ -293,21 +301,22 @@ Whereas, `<<` is directly modifying a value in the expression.
   <br>
 
   #### Mutable:
-  > Mutable objects are values that when created or reassigned will create new spots in memory. They don't come built into Ruby, your system decides as the program executes, where these newly made values are going to be placed in memory. This is the behaviour we've witnessed in our first exmaples.
+  > Mutable objects are objects whose values can be modified and manipulated without creating a copy with a new address in memory. When modified, you aren't creating a copy of the object in another address in memory, you're directly modifying the
+  > object in memory.
 
   <br>
 
   #### Immutable:
-  > Immutable objects are values in memory that have fixed spots in memory. This means they always hold the same addresses and object ID's in memory. They are sort of "built-into" your program, decided as to where they will permanently reside in memory. Hence, in our last example where the immutable value of `10` will always maintain the same object ID. </br>
-  _`10` happens to be an object ID of `21` (at least in my irb it is)._
+  > Immutable objects are objects with fixed spots in memory that cannot be modified or changed. In Ruby, if you try to perform
+  > reassignment or modification on an immutable object, you're just referencing another spot in memory with a different object.
 
   <br>
 
-  When we do assignment to an immutable value we are NOT creating a new space in memory with that value, we are pointing to a designated space in memory for that value.
+  When we do assignment to an immutable value we are NOT creating a new space in memory with that value, we are pointing to a designated space in memory for that value. In Ruby, the number `1` is just 1. You can't change or modify that.
 
   <br>
 
-  **Immutable objects in Ruby:**
+  **Immutable Data Types in Ruby:**
   -  Booleans
   - `nil`
   - Floats
@@ -318,11 +327,10 @@ Whereas, `<<` is directly modifying a value in the expression.
 
   <br>
 
-  **Mutable objects in Ruby:**
+  **Mutable Data Types in Ruby:**
   - Pretty much everything else.
   - Some exceptions with the use of methods like: Strings becoming immutable with the `freeze` method.
 
-  <br>
   <br>
 
   We can still mutate mutable objects in Ruby using methods. </br>
@@ -330,14 +338,122 @@ Whereas, `<<` is directly modifying a value in the expression.
   ```ruby
   a = "words"
 
-  puts " Value of 'a' => #{a} "
-  puts "object ID of `a` => #{a.object_id}"
+  puts " Value of 'a' => #{a} "             # => words
+  puts "object ID of `a` => #{a.object_id}" # => 60
 
-  a.upcase!
+  a.upcase! # No copies, we've mutated the object in the same spot in memory
 
-  puts " Value of 'a' => #{a} "
-  puts "object ID of `a` => #{a.object_id}"  
+  puts " Value of 'a' => #{a} "             # => WORDS
+  puts "object ID of `a` => #{a.object_id}" # => 60
 
   ```
   > Same object ID despite us changing the value. We can use these mutating methods to directly reference and modify the value 
   > of a space in memory.
+
+  <br>
+
+  _Here's an interesting note:_ 
+  If we mutate an array, are we creating a new array with a new object ID?
+  I mean, array's are mutable like strings, soooo...
+  ```ruby
+  arr = ["ham", "egg", "cheez"]
+
+  puts arr.object_id # => 60
+
+  arr[1] = "bread"
+
+  puts arr.object_id # => 60
+
+  ```
+  > Why are the object ID's the same, even though we've mutated the array? Shouldn't it produce a new array with a different 
+  > address like we saw with the reassignment of string variable, like in our previous examples?
+
+  <br>
+
+  ```ruby
+  arr = ["ham", "egg", "cheez"]
+
+  puts arr[1].object_id # => 60
+
+  arr[1] = "bread"
+
+  puts arr[1].object_id # => 80
+
+  ```
+  > Okay, this makes more sense. We are mutating the array items using the destructive `Array[] =` setter method, but we're 
+  > reassigning the pointers within the array. The array itself is a space in memory, and its indexes are also pointers to other
+  > spaces in memory. What we're doing here is reassigning the pointers of the items existing in the array to different values
+  > and spots in memory.
+
+  <br>
+
+  _To make it really obvious:_
+  ```ruby
+  arr = ["ham", "egg", "cheez"]
+
+  puts arr[1].object_id # => 60
+  puts arr.object_id    # => 80
+  
+  arr[1] = "toast"
+
+  puts arr[1].object_id # => 100
+  puts arr.object_id    # => 80
+  ```
+  Neat.
+
+  <br>
+
+  <hr>
+  
+  > The following examples were done on my system, so your object ID's will most likely look different from the ones I have in 
+  > the examples, but it's just to illustrate the point. I encourage anyone to go ahead and try this out on their own machines.
+
+  <br>
+
+  **Recap:** 
+  - _"Mutating"_ means to change the value at a specific address in memory.
+    _Example:_
+    ```ruby
+    a = "yolo"
+
+    puts a.object_id         # => 60
+    
+    a.upcase!.object_id      # => 60
+
+    ```
+    _Or this..._
+    ```ruby
+    a = "yolo"
+
+    puts a.object_id  # => 60
+    
+    b = a.upcase! # The value that `a` points to in memory is modified and `b` points the that same place
+
+    puts b.object_id  # => 60
+
+    ```
+  - _"Copying"_ means to change the address in memory to point to another object. 
+  _Example:_
+  ```ruby
+  a = "yolo"
+
+  puts a.object_id        # => 60
+
+  puts a.upcase.object_id # => 80
+
+  ```
+  _Or this..._
+  ```ruby
+  a = "yolo"
+
+  puts a.object_id  # => 60
+
+  b = a.upcase # Creates a new value with a 'copy' of `a`      
+  
+  puts b.object_id  # => 80
+
+  ```
+  <br>
+
+  <hr>
+
