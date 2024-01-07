@@ -17,7 +17,7 @@
 <br>
 
 Here's an image to help illustrate the difference between the two:
-![alt text](lesson_2/images/PBV_VS_PBR.png)
+![alt text](images/PBV_VS_PBR.png)
 
 
 <hr>
