@@ -16,6 +16,10 @@
 
 <br>
 
+Here's an image to help illustrate the difference between the two:
+![alt text](lesson_2/images/PBV_VS_PBR.png)
+
+
 <hr>
 
 ## Case for "Pass by Value"
