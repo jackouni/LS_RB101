@@ -553,22 +553,25 @@ To get more clarity on how objects are passed around in Ruby, here a few key poi
 <br>
 
   - #### Everything is an Object
-  Everything in Ruby is an object. In Ruby this can be anything from complex expressions, to variables, to values, object literals, arrays etc.
+    Everything in Ruby is an object. In Ruby this can be anything from complex expressions, to variables, to values, object literals, arrays etc.
 
-  Expressions can be thought of as long chains of methods with arugments that evaluate down to a single object.
+    Expressions can be thought of as long chains of methods with arugments that evaluate down to a single object.
 
-  ```ruby
-  10 * 12 - 2 + 10 - 8     # => 120
+    ```ruby
+    10 * 12 - 2 + 10 - 8     # => 120
 
-  # Can be thought of as:
-  10.*(12).-(2).+(10).-(8) # => 120
+    # Can be thought of as:
+    10.*(12).-(2).+(10).-(8) # => 120
 
-  10 > 2 == 2 > 10         # => false
+    10 > 2 == 2 > 10         # => false
 
-  # Can be thought of as:
-  10.>(2).==(2.>(10))      # => false
+    # Can be thought of as:
+    10.>(2).==(2.>(10))      # => false
 
-  ```
+    ```
+
+    ![alt text](images/method_chains.png)
+
 <br>
 
 <hr>
