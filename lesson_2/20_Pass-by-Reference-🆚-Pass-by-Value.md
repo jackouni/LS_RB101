@@ -6,13 +6,13 @@
 
 ### Starting Terms & Vocab:
 
-- #### "_Values_"
-> In context to this lesson, _values_ represent a copy of an object. The value of an object is a copy of the object.
+- #### "_Pass By Value_"
+> In context to this term, _value_ represents a copy of an object. The value of an object is a copy of the object.
 
 <br>
 
-- #### "_References_"
-> In context to this lesson, _references_ represent a reference to a spot in memory where an object resides. It's not a copy of the object, it's a direct reference. 
+- #### "_Pass By Reference_"
+> In context to this lesson, _reference_ represent a reference/pointer to a spot in memory where an object resides. It's not a copy of the object, it's a direct reference. 
 
 <br>
 
