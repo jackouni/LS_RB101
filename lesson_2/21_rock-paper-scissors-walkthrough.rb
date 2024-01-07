@@ -158,7 +158,7 @@ def play_round
   end 
 end 
 
-play_round()
+#play_round()
 
 puts("----------------------------------------")
 puts("----------------------------------------")
@@ -181,6 +181,20 @@ def prompt_wt(message)
   Kernel.puts "=> #{message}"
 end
 
+def display_results(player, computer)
+  if player == 'rock' && computer == 'scissors'  ||
+    player == 'scissors' && computer == 'paper' ||
+    player == 'paper' && computer == 'rock'
+    prompt_wt("You won!")
+  elsif player == 'rock' && computer == 'paper'  ||
+    player == 'scissors' && computer == 'rock' ||
+    player == 'paper' && computer == 'scissors' 
+    prompt_wt("You lost.")
+  else
+    prompt_wt("It's a tie.")
+  end 
+end 
+
 loop do
   choice = ''
 
@@ -199,17 +213,7 @@ loop do
   
   prompt_wt("You chose: #{choice}; Computer chose: #{computer_choice};")
 
-  if choice == 'rock' && computer_choice == 'scissors'  ||
-    choice == 'scissors' && computer_choice == 'paper' ||
-    choice == 'paper' && computer_choice == 'rock'
-    prompt_wt("You won!")
-  elsif choice == 'rock' && computer_choice == 'paper'  ||
-    choice == 'scissors' && computer_choice == 'rock' ||
-    choice == 'paper' && computer_choice == 'scissors' 
-    prompt_wt("You lost.")
-  else
-    prompt_wt("It's a tie.")
-  end 
+  display_results(choice, computer_choice)
 
   prompt_wt("Do you want to play again?")
   answer = Kernel.gets().chomp()
@@ -217,3 +221,91 @@ loop do
 end
 
 prompt_wt("Thank you for playing. Goodbye!")
+
+=begin  
+  Here are some things to consider from the assignment:
+
+  1) Notice how the display_results method calls the prompt method. 
+  What happens if you move the display_results method definition above the prompt method definition?
+  Does it still work?
+
+      A => Before I try: I believe it won't work because we're calling a method that hasb't been defined yet in our
+      program, because Ruby processes from top to bottom.
+      
+      After trying: Turns out it still works. This leads me to beleive that for methods Ruby doesn't necessarily evaluate 
+      from top to bottom in the code.
+
+  2) Create another method called test_method at the very top, before the prompt method definition.
+  Now try invoking the newly created method from just after the prompt method definition. 
+  Does it work? Now try invoking the method again just before the prompt method definition. 
+  Does it work? Why is there a different result?
+
+  Should look like this:
+  ------------------------------------------------------------
+    def test_method
+      prompt('test message')
+    end
+
+    test_method  # 2nd, try invoking "test_method" here
+
+    def prompt(message)
+      Kernel.puts("=> #{message}")
+    end
+                                                                  
+    test_method           # 1st, try invoking "test_method" here
+  ------------------------------------------------------------
+
+    A => Before trying: I think this will produce an error on the 2nd call. I think this because I intuitively
+    believe that Ruby will work this way, despite seeing what the last test question resulted in.
+
+    After trying: Turns out I was correct. I get an error message on the second call that reads:
+    ------------------------------------------------------------
+      21_rock-paper-scissors-walkthrough.rb:181:in `test_method': undefined method `prompt_wt' for main:Object (NoMethodError)
+
+      prompt_wt('test message')
+      ^^^^^^^^^
+      Did you mean?  prompt
+      from 21_rock-paper-scissors-walkthrough.rb:183:in `<main>'
+    ------------------------------------------------------------
+    
+    This leads me to think that Ruby is evaluated from top to bottom when running a program. 
+    But if this is the case, then how come methods can be defined out of sequence and still read eachother?
+    Methods can be defined out of sequence, but calling methods before they've been defined is not possible.
+    It's as if everything after a method call, in the code, doesn't exist.
+    The code does execute from top-to-bottom, but the method definitions themselves do not execute until they are called.
+
+  3) How would you use the display_results method differently if it returned a string, 
+  as opposed to outputting the string directly?
+
+    A => If the display_results method didn't output to the terminal I would name it something different like:
+    `get_round_outcome` but secondly, in this case it would be returning a string, so I would just do `prompt(display_results)`
+    as opposed to just simply called `display_results`. Because now we have to output the return ourselves from the method,
+    the method doesn't do that for us.
+
+  4) Running Rubocop on this code generates a lot of complaints about the display_results method being too complex. 
+  Can you think of a way to mitigate? 
+  We'll tackle this in an upcoming assignment, but try to think about a possible solution.
+
+    A => I would store the winning combinations in a constant variable as an array; 0th index being the player's choice
+    and the 1st index being the computer's choice. Then I would create an if/else in  `display_results` that would check to
+    see if the pairing of the player and computer's resutls in an array matched any of the arrays in the constant.
+
+    Not to mention, I would just do `elsif player == computer` to evaluate a tie and then use an `else` statement to display
+    the losing results, as we've already evaluated the winning condition and the tie game condition. This also saves us from
+    writing out a constant for LOSING_COMBOS.
+
+    How I would do it:
+    ------------------------------------------------------------
+    WINNING_COMBOS = [ ['rock', 'scissors'], ['scissors', 'paper'], ['paper', 'rock'] ]
+
+    def display_results(player, computer)
+      if WINNING_COMBOS.include?([player, computer])
+        puts "You Win!"
+      elsif player == computer
+        puts "Tie Game.!"
+      else
+        puts "You Lose!"
+      end 
+    end 
+    ------------------------------------------------------------
+=end
