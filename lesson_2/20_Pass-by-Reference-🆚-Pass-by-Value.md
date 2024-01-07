@@ -47,13 +47,13 @@ change_object(obj)
 puts obj #=> 100
 
 ```
-> In the above code snippet, you can see that even though we passed `obj` to the `change_object` method > and reassigned its value within `change_object`'s definition, when we reference  `obj` after invoking > `change_object` we still get the value of `100` for `obj`. 
+> In the above code snippet, you can see that even though we passed `obj` to the `change_object` method
+> and reassigned its value within `change_object`'s definition, when we reference  `obj` after invoking
+> `change_object` we still get the value of `100` for `obj`.
 
 <br>
 
 This leads us to belive that we are passing _'values'_ (copies) of an object to a method and not actually changing the object that exists in the outer scope.
-
-<br>
 
 <hr>
 
@@ -82,11 +82,14 @@ puts obj #=> JOE
 # 🤯 ?!
 
 ```
-> This would imply that Ruby is NOT "_pass by value_"., because we're able to directly "_reference_" the passed object and modify it. _This is not copy... right?_
+> This would imply that Ruby is NOT "_pass by value_" because we're able to directly "_reference_" the passed object and modify it.
+> _This is not a copy... right?_
 
 <br>
 
-Within the method operation we were unable to modify the passed variable with reassignment, but now we're able to modify the variable passed. What gives?
+During the _pass by value_ example we were unable to modify the passed variable with reassignment, but now we're able to modify the variable passed. 
+
+What gives?
 
 Not all actions or operations performed in a method definition will mutate the original object passed. 
 
@@ -106,7 +109,6 @@ puts obj #=> joe
 > Looks like we're back at "_pass by value_" behaviour again...
 > Why does Ruby do this and how does it do this?
 
-<br>
 
 <hr>
 
@@ -118,7 +120,7 @@ As we can see Ruby exhibits both _pass by reference_ and _pass by value_.
 
 When an operation within a method definition mutates the caller object, the method is modifying the original object.
 
-So, how can we tell when we're working with a method that references an object directly 🆚 one that uses a copy of the object?
+So, how can we tell when we're working with a method that mutates the original object 🆚 one that doesn't?
 
 **Answer:**
 There are some things that indicate a method will mutate an object, these are defined with `!` appended to the end of the method name. 
@@ -161,7 +163,7 @@ p nums #=> [20, 15, 10, 5, 1]
 
 ```
 
-This tells us that `+` operation is returning a new value from the expression.
+This tells us that the `+` operator is returning a new value from the expression.
 
 Whereas, `<<` is directly modifying a value in the expression.
 
@@ -174,14 +176,15 @@ Whereas, `<<` is directly modifying a value in the expression.
 - ### Variables as Pointers
   > Reviewing the concept of variables as pointers.
 
-  Variables should **NOT** be thought of as: _containers that house values._ <br />
-  Variable **SHOULD** be thought of as: _pointers to places in memory that hold values._
+  Variables should **NOT** be thought of as: 
+    _containers that house values._
+  
+  Variable **SHOULD** be thought of as: 
+    _pointers to places in memory that hold values._
 
-  <br>
 
   Variables are simply pointers to places in memory. When we reference or call a variable we just being pointed towards a place in memory.
 
-  <br>
 
   _Here's an example to illustrate:_
   ```ruby
@@ -195,7 +198,7 @@ Whereas, `<<` is directly modifying a value in the expression.
   ```
   > _As you can see..._
   > - `a` is originally pointing to a spot in memory with the value of `50`.
-  > - `b` points to `a` and just follows `a` to where it was pointing. Meaning `b` is now pointing the spot in memory with the value of `50`.
+  > - `b` points to `a` and just follows `a` to where it was pointing. Meaning `b` is now pointing to the spot in memory with the value of `50`.
   > - We reassign `a` to point to a spot in memory with a value of `10`. 
   > - When we `puts a` we're pointing to the new spot in memory with `10`.
   > - When we `puts b` we're pointing to the spot in memory with `50`.
@@ -264,7 +267,7 @@ Whereas, `<<` is directly modifying a value in the expression.
 
   <br>
 
-  > Strangely, even though we reassigned the value of `a` to be the exact same as it was originally, it still created a new place in memory for this reassignment.
+  > Strangely, even though we reassigned the value of `a` to be the exact same value as it was originally, it still created a new place in memory for this reassignment.
 
   <br>
 
@@ -278,7 +281,7 @@ Whereas, `<<` is directly modifying a value in the expression.
   puts " 'b' object ID => #{b.object_id} " # => 80
 
   ```
-  >  We can see this in this example too. `=` creates a duplicate of the value `"LS"` in memory.
+  >  We can see this in this example too, `=` creates a duplicate of the value `"LS"` in memory.
 
   <br>
 
@@ -299,14 +302,15 @@ Whereas, `<<` is directly modifying a value in the expression.
   <br>
 
   Okay Jack, what is this spooky witch magic?
+
   <br>
 
   This is due to mutable 🆚 immutable objects.
   <br>
 
   #### Mutable:
-  > Mutable objects are objects whose values can be modified and manipulated without creating a copy with a new address in memory. When modified, you aren't creating a copy of the object in another address in memory, you're directly modifying the
-  > object in memory.
+  > Mutable objects are objects that **can** be modified and manipulated **without** creating a copy of the object at a new address in memory. When modified, you aren't creating a copy of the object in another address in memory, you're directly modifying the
+  > object.
 
   <br>
 
@@ -316,7 +320,7 @@ Whereas, `<<` is directly modifying a value in the expression.
 
   <br>
 
-  When we think we're doing an assignment or reassignment to an immutable object, we are NOT creating a new space in memory with a copy of that value, we are pointing to another space in memory with that value.
+  When we think we're doing an assignment or reassignment to an immutable object, we are **NOT** creating a new space in memory with a copy of that value, we are pointing to another space in memory with that value.
   In Ruby, the number `1` is just 1. You can't duplicate or modify `1`. It'll always hold that same space in memory.
   <br>
 
@@ -368,7 +372,7 @@ Whereas, `<<` is directly modifying a value in the expression.
 
   ```
   > Why are the object ID's the same, even though we've mutated the array? Shouldn't it produce a new array with a different 
-  > address like we saw with the reassignment of string variable, like in our previous examples?
+  > address in memory, like we saw with the reassignment of string variables, like in our previous examples?
 
   <br>
 
@@ -402,10 +406,6 @@ Whereas, `<<` is directly modifying a value in the expression.
   Neat.
   
   <hr>
-  
-  > The following examples were done on my system, so your object ID's will most likely look different from the ones I have in 
-  > the examples, but it's just to illustrate the point. I encourage anyone to go ahead and try this out on their own machines.
-
   <br>
 
   **Recap:** 
@@ -453,9 +453,9 @@ Whereas, `<<` is directly modifying a value in the expression.
     ```
   <br>
 
-- ### Mutating vs Non-Mutating Methods
+- ### Mutating 🆚 Non-Mutating Methods
 
-**Here are some mutating and non-mutating methods:**
+  **Here are some mutating and non-mutating methods:**
 
   - ##### Non-Mutating:
       1. Methods without `!` appended to the end.
@@ -469,6 +469,7 @@ Whereas, `<<` is directly modifying a value in the expression.
       2. Assignment of array indexes. (`Array[]=` method)
       3. `<<` is a mutating method.
       4. Assignment of hash values. (`Hash[]=` method)
+      5. Setter methods
 
 <br>
     
