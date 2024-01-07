@@ -453,8 +453,26 @@ Whereas, `<<` is directly modifying a value in the expression.
     ```
   <br>
 
-  <hr>
-  <hr>
+- ### Mutating vs Non-Mutating Methods
+
+**Here are some mutating and non-mutating methods:**
+
+  - ##### Non-Mutating:
+      1. Methods without `!` appended to the end.
+      2. Re-assignment of objects passed to your method definition.
+      3. Assignment operators like `=`, `+=`, `*=`, etc... are non-mutating (except for reassignment of array indexes and hash values).
+      4. Any method that acts on an immutable object is guarenteed to be non-mutating because you can't mutate an immutable object.
+      5. `+` is non-mutating. 
+
+  - ##### Mutating:
+      1. Generally, methods ending in `!`.
+      2. Assignment of array indexes. (`Array[]=` method)
+      3. `<<` is a mutating method.
+      4. Assignment of hash values. (`Hash[]=` method)
+
+<br>
+    
+<hr>
 
 ## Ruby's "Pass By Value of The Reference" & "Call By Sharing"
 
@@ -462,7 +480,7 @@ So, this is where things get a little more tricky...
 
 Ruby is sort of a mix of both PBV and PBR.
 
-> For short we'll say _'PBOTVR'_ for _"Pass By Value of the Reference_" and _'CBS'__ for "Call By Sharing"_. Although both are
+> For short we'll say _'PBOTVR'_ for _"Pass By Value of the Reference_" and _'CBS'_ for _"Call By Sharing"_. Although both are
 > the same, so we'll likely just be referring to CBS from here on.
 
 With CBS, what we're doing when we pass an object to a method is: Passing a copy of the reference to the method, **not** the actual reference itself.
