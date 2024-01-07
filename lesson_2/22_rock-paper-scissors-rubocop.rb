@@ -1,6 +1,6 @@
 Kernel.puts("Welcome to LS's 'Rock. Paper, Scissors'!")
 
-VALID_CHOICES =  ["rock", "paper", "scissors"]
+VALID_CHOICES = %w(rock paper scissors)
 
 def prompt(message)
   Kernel.puts "=> #{message}"
