@@ -491,3 +491,91 @@ Here's a visual aid to help fully understand:
 
 ![alt text](images/PBVOTR.png)
 
+<hr>
+
+## Everything is an Object and Most Things Are Methods
+
+Talking about methods in Ruby, we start to notice that many of the things we deal with are methods.
+
+To get more clarity on how objects are passed around in Ruby, here a few key points to help us understand how Ruby works:
+
+- #### Caller Objects as Arguments
+  You can think of caller object, the object a method is appended to and calling on, can be thought of as an arugment to that method. The method is taking the data of that object to perform a set of operations.
+<br>
+
+- #### Methods are Object Translators/Transformers
+  Methods are like Object translators or transformers.
+  You input object(s) into a method and the method `return`s an object as output from its operation.
+  Objects are passed to methods and then methods use `return` to pass an object back to us.
+
+  Here's a quick diagram to illustrate the idea:
+
+  ![alt text](images/method_flow.png)
+<br>  
+
+- #### Blocks, Procs, and Lambdas
+  When we talk about methods, we should also include _blocks_, _procs_ and _lambdas_ as well. 
+  These essentially do the same thing as methods - They take an object and return an object.
+  They are just another way we can translate and transform objects.
+<br>
+
+- #### Most Things are Methods 
+
+  `+`, `-`, `*`,`>`, `==`, `[]`, and `!` are literally methods that use some sweet syntactic sugar.
+
+  _Take a look at this:_
+  ```ruby
+  1 + 2 == 1.+(2) # => true
+
+  3 > 4 == 3.>(4) # => true
+
+  (true == true) == (true.==(true)) # => true
+
+  arr = ['a', 'b', 'c']
+
+  arr[2] == arr.[](2) # => true
+
+  !true == !(true) # => true
+
+  # 🤯 
+  ```
+  > As you can see above, a lot of these operators we use are just methods in disguise, and the operands to these operators are just arguments or caller objects.
+
+  Which leads us to another point:
+<br>
+
+- #### Operands as Arguments or Callers
+  Most operands are actually just arguments or caller objects to methods. The way Ruby was built was to abstract this away, but at the core a lot of these operators are just methods taking operands as argurments and callers.
+
+  Technically, operators like `&&`, `||` and `=` are not methods, but act like methods and can be thought of to be like methods.
+
+  All these operators take objects and return values to us.
+<br>
+
+  - #### Everything is an Object
+  Everything in Ruby is an object. In Ruby this can be anything from complex expressions, to variables, to values, object literals, arrays etc.
+
+  Expressions can be thought of as long chains of methods with arugments that evaluate down to a single object.
+
+  ```ruby
+  10 * 12 - 2 + 10 - 8     # => 120
+
+  # Can be thought of as:
+  10.*(12).-(2).+(10).-(8) # => 120
+
+  10 > 2 == 2 > 10         # => false
+
+  # Can be thought of as:
+  10.>(2).==(2.>(10))      # => false
+
+  ```
+<br>
+
+<hr>
+
+## Evaluation Strategies
+
+
+
+
+
