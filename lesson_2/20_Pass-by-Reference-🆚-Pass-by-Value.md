@@ -1,6 +1,6 @@
 # <ins>Pass by Reference 🆚 Pass by Value</ins>
 > A widely debated topic amongst Rubyist. 
-> Is Ruby _pass by reference_ or _pass by value_?
+> Is Ruby _pass by reference (PBR)_ or _pass by value (PBV)_?
 > A debate on what Ruby does under the hood when passing objects to methods.
 > Are objects passed to methods _references_ to that object in memory, or are they _copies_ of that object?
 
@@ -16,7 +16,9 @@
 
 <br>
 
-Here's an image to help illustrate the difference between the two:
+#### Here's an image to help illustrate the difference between the two:
+<br>
+
 ![alt text](images/PBV_VS_PBR.png)
 
 
@@ -297,11 +299,9 @@ Whereas, `<<` is directly modifying a value in the expression.
   <br>
 
   Okay Jack, what is this spooky witch magic?
-
   <br>
 
   This is due to mutable 🆚 immutable objects.
-
   <br>
 
   #### Mutable:
@@ -316,8 +316,8 @@ Whereas, `<<` is directly modifying a value in the expression.
 
   <br>
 
-  When we do assignment to an immutable value we are NOT creating a new space in memory with that value, we are pointing to a designated space in memory for that value. In Ruby, the number `1` is just 1. You can't change or modify that.
-
+  When we think we're doing an assignment or reassignment to an immutable object, we are NOT creating a new space in memory with a copy of that value, we are pointing to another space in memory with that value.
+  In Ruby, the number `1` is just 1. You can't duplicate or modify `1`. It'll always hold that same space in memory.
   <br>
 
   **Immutable Data Types in Ruby:**
@@ -328,13 +328,11 @@ Whereas, `<<` is directly modifying a value in the expression.
   - Symbols
   - BigNums
   - FixNums
-
   <br>
 
   **Mutable Data Types in Ruby:**
   - Pretty much everything else.
   - Some exceptions with the use of methods like: Strings becoming immutable with the `freeze` method.
-
   <br>
 
   We can still mutate mutable objects in Ruby using methods. </br>
@@ -384,7 +382,7 @@ Whereas, `<<` is directly modifying a value in the expression.
   puts arr[1].object_id # => 80
 
   ```
-  > Okay, this makes more sense. We are mutating the array items using the destructive `Array[] =` setter method, but we're 
+  > Okay, this makes more sense. We are mutating the array items using the destructive `Array#[] =` setter method, but we're 
   > reassigning the pointers within the array. The array itself is a space in memory, and its indexes are also pointers to other
   > spaces in memory. What we're doing here is reassigning the pointers of the items existing in the array to different values
   > and spots in memory.
@@ -436,28 +434,37 @@ Whereas, `<<` is directly modifying a value in the expression.
     puts b.object_id  # => 60
 
     ```
-  - _"Copying"_ means to change the address in memory to point to another object. 
+  - _"Copying"_ or _"non-mutating"_ means to change the address in memory to point to another object. 
   _Example:_
-  ```ruby
-  a = "yolo"
+    ```ruby
+    a = "yolo"
 
-  puts a.object_id        # => 60
+    puts a.object_id        # => 60
 
-  puts a.upcase.object_id # => 80
+    puts a.upcase.object_id # => 80
 
-  ```
+    ```
   _Or this..._
-  ```ruby
-  a = "yolo"
+    ```ruby
+    a = "yolo"
 
-  puts a.object_id  # => 60
+    puts a.object_id  # => 60
 
-  b = a.upcase # Creates a new value with a 'copy' of `a`      
-  
-  puts b.object_id  # => 80
+    b = a.upcase # Creates a new value with a 'copy' of `a`      
+    
+    puts b.object_id  # => 80
 
-  ```
+    ```
   <br>
 
   <hr>
+  <hr>
+
+## Ruby's "Pass By Value of The Reference" & "Call By Sharing"
+
+So, this is where things get a little more tricky...
+
+Ruby is a mix of both PBV and PBR.
+
+
 
