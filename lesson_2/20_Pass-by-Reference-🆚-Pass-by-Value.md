@@ -19,7 +19,7 @@
 #### Here's an image to help illustrate the difference between the two:
 <br>
 
-![alt text](images/PBV_VS_PBR.png)
+![Pass by Value V.S. Pass by Reference](images/PBV_VS_PBR.png)
 
 
 <hr>
