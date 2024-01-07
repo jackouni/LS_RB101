@@ -387,8 +387,6 @@ Whereas, `<<` is directly modifying a value in the expression.
   > spaces in memory. What we're doing here is reassigning the pointers of the items existing in the array to different values
   > and spots in memory.
 
-  <br>
-
   _To make it really obvious:_
   ```ruby
   arr = ["ham", "egg", "cheez"]
@@ -402,9 +400,7 @@ Whereas, `<<` is directly modifying a value in the expression.
   puts arr.object_id    # => 80
   ```
   Neat.
-
-  <br>
-
+  
   <hr>
   
   > The following examples were done on my system, so your object ID's will most likely look different from the ones I have in 
@@ -444,7 +440,7 @@ Whereas, `<<` is directly modifying a value in the expression.
     puts a.upcase.object_id # => 80
 
     ```
-  _Or this..._
+    _Or this..._
     ```ruby
     a = "yolo"
 
@@ -464,7 +460,15 @@ Whereas, `<<` is directly modifying a value in the expression.
 
 So, this is where things get a little more tricky...
 
-Ruby is a mix of both PBV and PBR.
+Ruby is sort of a mix of both PBV and PBR.
 
+> For short we'll say _'PBOTVR'_ for _"Pass By Value of the Reference_" and _'CBS'__ for "Call By Sharing"_. Although both are
+> the same, so we'll likely just be referring to CBS from here on.
 
+With CBS, what we're doing when we pass an object to a method is: Passing a copy of the reference to the method, **not** the actual reference itself.
+
+Here's a visual aid to help fully understand:
+<br>
+
+![alt text](images/PBVOTR.png)
 
