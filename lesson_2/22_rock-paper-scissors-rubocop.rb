@@ -32,7 +32,7 @@ loop do
   choice = ''
 
   loop do
-    prompt("Choose one: #{VALID_CHOICES.join(', ')}\n( You can also type 'r', 'p', 'sc', 'l' or 'sp' for short. )")
+    prompt("Choose one: #{VALID_CHOICES.join(', ')}\n( You can also type: #{ALIASES.join(', ')}. )")
     choice = Kernel.gets().chomp()
 
     if VALID_CHOICES.include?(choice)
