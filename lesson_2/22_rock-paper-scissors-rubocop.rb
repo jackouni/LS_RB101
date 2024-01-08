@@ -62,11 +62,12 @@ loop do
 
   winner = get_winner(player_choice, computer_choice)
 
-  if winner == 'player'
+  case winner
+  when 'player'
     player_score += 1
-  elsif winner == 'computer'
+  when 'computer'
     computer_score += 1
-  end 
+  end
 
   prompt("You chose: #{player_choice}; Computer chose: #{computer_choice};")
   display_results(winner)
