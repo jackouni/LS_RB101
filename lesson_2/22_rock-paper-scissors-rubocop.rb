@@ -1,8 +1,9 @@
-Kernel.puts("Welcome to LS's 'Rock. Paper, Scissors'!")
+Kernel.puts("Welcome to LS's 'Rock. Paper, Scissors, Lizard, Spock'!")
 
-VALID_CHOICES = %w(rock paper scissors)
+ALIASES = %w(r p sc l sp)
+VALID_CHOICES = %w(rock paper scissors lizard spock)
 
-WIN_COMBOS = [['rock', 'scissors'], ['scissors', 'paper'], ['paper', 'rock']]
+WIN_COMBOS = [['rock', 'scissors'], ['scissors', 'paper'], ['paper', 'rock'], ['rock', 'lizard'], ['lizard', 'spock'], ['spock', 'scissors'], ['scissors', 'lizard'], ['lizard', 'paper'], ['paper', 'spock'], ['spock', 'rock']]
 
 def prompt(message)
   Kernel.puts "=> #{message}"
@@ -10,6 +11,11 @@ end
 
 def win?(first, second)
   WIN_COMBOS.include?([first, second])
+end
+
+def alias_to_full_word(choice)
+  alias_index = ALIASES.index(choice)
+  VALID_CHOICES[alias_index]
 end
 
 def display_results(player, computer)
@@ -26,10 +32,13 @@ loop do
   choice = ''
 
   loop do
-    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+    prompt("Choose one: #{VALID_CHOICES.join(', ')}\n( You can also type 'r', 'p', 'sc', 'l' or 'sp' for short. )")
     choice = Kernel.gets().chomp()
 
     if VALID_CHOICES.include?(choice)
+      break
+    elsif ALIASES.include?(choice)
+      choice = alias_to_full_word(choice)
       break
     else
       prompt("That's not a valid choice.")
