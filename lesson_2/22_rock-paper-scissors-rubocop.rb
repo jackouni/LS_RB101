@@ -9,8 +9,14 @@ def prompt(message)
   Kernel.puts "=> #{message}"
 end
 
-def win?(first, second)
-  WIN_COMBOS.include?([first, second])
+def get_winner(player_choice, computer_choice)
+  if player_choice == computer_choice
+    "tie"
+  elsif WIN_COMBOS.include?([player_choice, computer_choice])
+    "player"
+  else
+    "computer"
+  end 
 end
 
 def alias_to_full_word(choice)
@@ -18,10 +24,10 @@ def alias_to_full_word(choice)
   VALID_CHOICES[alias_index]
 end
 
-def display_results(player, computer)
-  if win?(player, computer)
+def display_results(winner)
+  if winner == 'player'
     prompt("You Win!")
-  elsif win?(computer, player)
+  elsif winner == 'computer'
     prompt("You Lost!")
   else
     prompt("It's a tie.")
@@ -37,15 +43,15 @@ computer_score = 0
 
 loop do
   
-  choice = ''
+  player_choice = ''
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}\n( You can also type: #{ALIASES.join(', ')}. )")
-    choice = Kernel.gets().chomp()
+    player_choice = Kernel.gets().chomp()
 
-    if VALID_CHOICES.include?(choice)
+    if VALID_CHOICES.include?(player_choice)
       break
-    elsif ALIASES.include?(choice)
-      choice = alias_to_full_word(choice)
+    elsif ALIASES.include?(player_choice)
+      player_choice = alias_to_full_word(player_choice)
       break
     else
       prompt("That's not a valid choice.")
@@ -54,14 +60,16 @@ loop do
 
   computer_choice = VALID_CHOICES.sample()
 
-  if win?(choice, computer_choice)
+  winner = get_winner(player_choice, computer_choice)
+
+  if winner == 'player'
     player_score += 1
-  elsif win?(computer_choice, choice)
+  elsif winner == 'computer'
     computer_score += 1
   end 
 
-  prompt("You chose: #{choice}; Computer chose: #{computer_choice};")
-  display_results(choice, computer_choice)
+  prompt("You chose: #{player_choice}; Computer chose: #{computer_choice};")
+  display_results(winner)
   display_scores(player_score, computer_score)
 
   prompt("Do you want to play again?")
