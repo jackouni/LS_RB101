@@ -578,6 +578,17 @@ To get more clarity on how objects are passed around in Ruby, here a few key poi
 
 ## Evaluation Strategies
 
+Computer programming lanugages use an _evaluation strategy_ to determine what order in which to evaluate expressions and what a method can do with the resulting objects.
+
+A common type of strategy used for evaluation is <ins>_**strict evaluation**_</ins>.
+
+This means, that expressions need be evaluated into objects before they can be passed to methods.
+
+Ruby solely uses strict evaluation.
+
+_Pass By Value_ and _Pass By Reference_ are the two most common "_object passing strategies_" that use strict evaluation.
+
+In other words, _Pass By Value_ and _Pass By Reference_ are strict evaluation strategies.
 
 
 
