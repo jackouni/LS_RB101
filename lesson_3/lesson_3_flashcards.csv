@@ -1,4 +1,3 @@
-"Front", "Back"
 "What is `Array#uniq` ?",  "Returns an array with one of each unique value of the caller."
 "`[1,2,2,4,4].______` returns `[1,2,4]`",  "[1,2,2,4,4].uniq() returns this..."
 "What is the 'NOT' operator?",  "What is `!` or 'bang'."
@@ -10,4 +9,13 @@
 "What is `Array#delete_at` ?",  "An Array method that deletes an array item at the index represented by the arugment."
 "`[1,2,3,4].______` returns `[1,2,4]` .",  "`[1,2,3,4].delete(3)` and `[1,2,3,4].delete_at(2)` return this..."
 "What is `Range#cover?` ?", "A Range method that returns `true` if argument lies within it or otherwise returns `false`?"
+"What is `String#concat` or `<<` ?",  "A mutating String method that concatenates the the caller with the arugment."
+"What is `<<` .",  "A mutating String/Array method that appends the right operand onto the left."
+"`'hello'.______` returns `'hello you'` .",  "`'hello.concat(' you')` return this..."
+"`[1,2,3] ______ 120` returns `[1,2,3,120]` .",  "`[1,2,3] << 120` return this..."
+"What is `String#prepend` ?",  "A String method that prepends the String arugment to the caller."
+"`'hello'.______` returns `'you hello'` .",  "`'hello.prepend('you ')` return this..."
+"What is `Array#flatten`.", "An Array method that 'flattens' all nested arrays to a single un-nested array."
+"What is `Hash#assoc`.", "A Hash method that finds the key (the argument) of the caller and returns a 2-item array of the key and value."
+
 
