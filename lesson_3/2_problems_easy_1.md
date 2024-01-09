@@ -140,8 +140,71 @@ numbers.delete(1) #=> [2, 3, 4, 5]
 # or this...
 (10..100).cover?(42)
 ```
+
 <br>
 <hr>
+
+## 6. Starting with the string:
+```ruby
+famous_words = "seven years ago..."
+```
+## show two different ways to put the expected "Four score and " in front of it.
+
+#### _ANSWERS:_
+```ruby
+famous_words = "seven years ago..."
+famous_saying = "Four score and " + famous_words
+```
+**_Or you could do:_**
+```ruby
+famous_words = "seven years ago..."
+famous_saying = "Four score and " << famous_words
+```
+**_Or this:_**
+```ruby
+famous_words = "seven years ago..."
+famous_saying = "Four score and ".concat(famous_words)
+```
+
+<br>
+<hr>
+
+## 7. If we build an array like this:
+```ruby
+flintstones = ["Fred", "Wilma"]
+flintstones << ["Barney", "Betty"]
+flintstones << ["BamBam", "Pebbles"]
+```
+## We will end up with this "nested" array:
+```ruby
+["Fred", "Wilma", ["Barney", "Betty"], ["BamBam", "Pebbles"]]
+```
+## Make this into an un-nested array.
+
+#### _ANSWER:_
+```ruby
+flintstones.flatten!
+```
+
+<br>
+<hr>
+
+## Given the hash below
+```ruby
+flintstones = { "Fred" => 0, "Wilma" => 1, "Barney" => 2, "Betty" => 3, "BamBam" => 4, "Pebbles" => 5 }
+```
+## Create an array containing only two elements: Barney's name and Barney's number.
+
+#### _ANSWER:_
+```ruby
+flintstones = { "Fred" => 0, "Wilma" => 1, "Barney" => 2, "Betty" => 3, "BamBam" => 4, "Pebbles" => 5 }
+flintstones.assoc('Barney')
+```
+
+<br>
+<hr>
+
+
 
 
 
