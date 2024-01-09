@@ -1,0 +1,13 @@
+"Front", "Back"
+"What is `Array#uniq` ?",  "Returns an array with one of each unique value of the caller."
+"`[1,2,2,4,4].______` returns `[1,2,4]`",  "[1,2,2,4,4].uniq() returns this..."
+"What is the 'NOT' operator?",  "What is `!` or 'bang'."
+"What is the 'double-bang' or `!!` ?", "An operator combo that results in double negation of truthy/falsy value?" 
+"`?` at the end of a method name.", "What is the naming convention for a method that returns a boolean."
+"A String method that replaces one word or character for another?",  "What is `String#gsub` ?"
+"`'hey'.______` returns `hoy`",  "`'hey'.gsub('e', 'o')` returns this..."
+"What is `Array#delete` ?",  "An Array method that deletes an array item that matches the argument's value."
+"What is `Array#delete_at` ?",  "An Array method that deletes an array item at the index represented by the arugment."
+"`[1,2,3,4].______` returns `[1,2,4]` .",  "`[1,2,3,4].delete(3)` and `[1,2,3,4].delete_at(2)` return this..."
+"What is `Range#cover?` ?", "A Range method that returns `true` if argument lies within it or otherwise returns `false`?"
+
