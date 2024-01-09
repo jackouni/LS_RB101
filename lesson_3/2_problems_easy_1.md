@@ -112,7 +112,7 @@ numbers.delete_at(1)
 numbers.delete(1)
 ```
 
-  **_ANSWER:_**
+  **_ANSWER:_**</br>
   The `delete` method will delete the first item in the caller array that has the same
   value as the argument.
   `delete_at` will delete the item in the caller array with the same index number as the argument.
@@ -199,4 +199,8 @@ flintstones = { "Fred" => 0, "Wilma" => 1, "Barney" => 2, "Betty" => 3, "BamBam"
   end  
 
   p barney
+  ```
+  **_Launch School's answer:_**
+  ```ruby
+  flintstones.assoc("Barney")
   ```
