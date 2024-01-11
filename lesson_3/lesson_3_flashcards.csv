@@ -37,3 +37,8 @@
 "What is `String#count`.", "A String method that counts the number of occurances of a given sub-string in the caller."
 "'tooth ten'.______` returns 3.", "`'tooth ten'.count('t')` returns this..."
 "A String method used to 'center' a string in the terminal", "What is `String#center`."
+"The type of evaluation Ruby uses.", "What is 'Strict evaluation'."
+"A technique that Ruby uses to pass objects to methods.", "What is Pass By Value of The Reference"
+"The value for variables initialized in unexecuted conditional statement branches", "`nil` is returned for variables initialized in unexecuted conditional statement branches."
+"These values are `nil` even though they were never executed in the conditional statement.", "The value of intialized variables in unexecuted conditional statement branches."
+"In Ruby, these are recognized by the interpreter and initialized to nil if they are declared in conditional branches that are not executed.", "What are variables in unexecuted conditional branches?"
