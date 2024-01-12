@@ -1,0 +1,26 @@
+What is the convention for tab indentation in Ruby? ; What is 2 spaces for indentation.
+Class names use this style convention in Ruby. ; Ruby styles this using CamelCase.
+Variables, methods and file names use this style convention in Ruby. ; Ruby styles these using snake_case.
+Constants use this name styling convention in Ruby. ; Ruby styles this using ALL CAPS.
+What is pseudocode? ; A type of "code" that reads like plain English, with minimal or no syntax to map out a problem.
+These visuals use lines and shapes to depict the flow of an application ; What are flowcharts?
+This is a common static code analyzer used for Ruby. ; What is Rubocop?
+Software that detects style rules and enforces them in your app ; What is a style formatter.
+Software that detects error-prone code like bugs, typos and some style errors. ; What is a code linter.
+What is Pry Byebug? ; This is a common debugging tool in Ruby that allows you to "step through" your code line-by-line.
+6 common steps for debugging? ; What are: Reproduce the Error, Determine Boundaries, Trace the Code, Understand the Problem Implement a fix and Test a fix.
+What are operators? ; Are symbols that tell Ruby to perform a specific set of operations on a/some value(s).
+What are operands? ; These are values or objects that are used in a operation involving an operator.
+What are unary operators? ; Operators that take 1 operand to perform an operation on.
+What are Binary operators? ; Operators that take 2 operands to perform an operation on.
+What are Ternary operators? ; Operators that take 3 operands to perform an operation on.
+What is the syntax for a Ternary operator ; `<expression> ? <value if true> : <value if false>` is the syntax for...
+What is `tap`? ; Is a good method for debugging that allows us to "tap" into the value of an object through a block.
+A method should do one of these two things. ; A ______ either returns a meanigful value or creates a side-effect. Never both.
+If a method makes any changes outside of its scope. It can be mutating an object or changing terminal displays. ; What are "side-effects".
+What is an "explicit return"? ; When the `return` keyword is used to return a value and exit a scope.
+What is an "implicit return"? ; When the last evaluated expression in a method or block scope is returned by default.
+What is a word you should never need to use in a method name? ; The use of the word "return_" or "returns_" in a method's name.
+What are words you should use in the name of a method that prints to the terminal? ; The use of words like "print" or "dispaly" in a method's name.
+When a block variable is the same name as an outer-scoped variable. ; What is "variable shadowing".
+A character used to represent an unused parameter. ; Use `_` to represent unused ______.
